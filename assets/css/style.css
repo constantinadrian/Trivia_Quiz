@@ -6,6 +6,19 @@ body {
     font-family: 'PT Serif', serif;
 }
 
+h1 {
+    font-size: 1.5rem;
+}
+
+h2 {
+    font-size: 1rem;
+}
+
+h1, 
+h2 {
+    margin-bottom: 2rem;
+}
+
 /* ---------------------------------------- NavBar ---------------------------------------- */
 
 .navbar {
@@ -71,5 +84,139 @@ button[aria-expanded="true"] .bar3 {
 
     .nav-link {
         margin-left: 2rem;
+    }
+}
+
+/* ---------------------------------------- Landing ---------------------------------------- */
+
+main {
+    margin-top: 59.4px;
+}
+
+#home {
+    width: 100%; 
+    display: flex;
+    flex-direction: row;
+}
+
+.landing-section {
+    width: 100%;
+    min-height: calc(100vh - 59.4px);
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -ms-flex-pack: distribute; 
+    justify-content: space-around;   
+    -webkit-box-align: center;   
+        -ms-flex-align: center;   
+            align-items: center;
+}
+
+.landing-section--bg {
+    background: url('../images/pexels-lex-photography-1109543.jpg') no-repeat center center scroll;
+    -webkit-background-size: cover;
+       -moz-background-size: cover;
+         -o-background-size: cover;
+            background-size: cover;
+}
+
+.landing-section-item {
+    width: 100%;
+}
+
+.landing-section-item-container-outer { 
+    max-width:624px;
+    margin: 0 auto;
+}
+
+.landing-section-item-container-inner {
+    max-width: 560px;
+    text-align: center;
+    padding: 1.5rem;
+    margin: 2rem;
+    border-radius: .5rem;
+    background: rgba(250, 250, 250, 1);
+
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -ms-flex-line-pack: center;
+        align-content: center;
+}
+
+.landing-section-item-container-text {
+    width: 100%;
+    min-height: 195px;
+
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -ms-flex-line-pack: center;
+        align-content: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+}
+
+.btn:focus {
+    box-shadow: none;
+}
+
+.btn--cta-quiz {
+    border-radius: 1.5rem;
+    padding: 5px 20px;
+    margin: 1.5rem 0;
+}
+
+.btn--misty-rose {
+    background-color: #fbe2da;
+    color: #000;
+}
+
+.btn--misty-rose:hover,
+.btn--misty-rose:active,
+.btn--misty-rose:focus,
+.btn--misty-rose:active:focus {
+    background-color: #fdd5c3;
+    border-color: #fdd5c3;
+    color: #000;
+}
+
+.landing-section-item a {
+    color: #000;
+}
+
+@media only screen and (min-width:768px) {
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+}
+
+@media only screen and (min-width: 575px) and (max-width: 767px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
     }
 }
