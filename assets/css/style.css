@@ -358,6 +358,56 @@ main {
     margin-right: 1.5rem;
 }
 
+/* ---------------------------------------- Quiz Categories Photo ---------------------------------------- */
+
+.quiz-image--computers {
+    background: url('../images/pexels-tranmautritam-69432.jpg') no-repeat center center scroll;
+    -webkit-background-size: cover;
+       -moz-background-size: cover;
+         -o-background-size: cover;
+            background-size: cover;        
+}
+
+.quiz-image--nature-science {
+    background: url('../images/pexels-anthony-132477.jpg') no-repeat center center scroll;
+    -webkit-background-size: cover;
+       -moz-background-size: cover;
+         -o-background-size: cover;
+            background-size: cover;     
+}
+
+.quiz-image--history {
+    background: url('../images/pexels-pixabay-164336.jpg') no-repeat center center scroll;
+    -webkit-background-size: cover;
+       -moz-background-size: cover;
+         -o-background-size: cover;
+            background-size: cover;     
+}
+
+.quiz-image--geography {
+    background: url('../images/pexels-chelsea-cook-2929906.jpg') no-repeat center center scroll;
+    -webkit-background-size: cover;
+       -moz-background-size: cover;
+         -o-background-size: cover;
+            background-size: cover;     
+}
+
+.quiz-image--art {
+    background: url('../images/florence-3684231_640.jpg') no-repeat center center scroll;
+    -webkit-background-size: cover;
+       -moz-background-size: cover;
+         -o-background-size: cover;
+            background-size: cover;     
+}
+
+.quiz-image--mathematics {
+    background: url('../images/pexels-jeshootscom-714698.jpg') no-repeat center center scroll;
+    -webkit-background-size: cover;
+       -moz-background-size: cover;
+         -o-background-size: cover;
+            background-size: cover;     
+}
+
 @media only screen and (min-width: 768px) and (max-width:1199px) {
     .container {
         max-width: 960px;
