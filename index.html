@@ -95,7 +95,7 @@
             <div class="container">
                 <h3 class="section-title">Quiz Categories</h3>
                 <hr>
-                
+
                 <div class="quiz-categories">
 
                     <div class="quiz-card">
@@ -153,7 +153,50 @@
 
         <!-- Contact Form section -->
         <section id="contact">
-            
+            <div class="container">
+                <h3 class="section-title">Contact</h3>
+                <hr>
+                <div class="contact-wrapper">
+                    <div class="row">
+                        <div class="col-12-sm col-md-10 col-lg-8 offset-md-1 offset-lg-2">
+                            <!-- Credit code Form: https://getbootstrap.com/docs/4.6/components/forms/#horizontal-form -->
+                            <form class="contact-form" onsubmit="return sendMail(this);">
+                                <div class="form-group row">
+                                    <label for="fname" class="col-sm-2 col-form-label">Full Name</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="fname" name="fname" placeholder="Your full name" required>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="emailaddress" class="col-sm-2 col-form-label">Email</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="emailaddress" name="emailaddress" placeholder="Your email" required>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="subject" class="col-sm-2 col-form-label">Subject</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="subject" name="subject" placeholder="Your subject" required>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="message" class="col-sm-2 col-form-label">Message</label>
+                                    <div class="col-sm-10">
+                                        <textarea class="form-control" id="message" name="message" rows="7" placeholder="Your message" required></textarea>  
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-10 offset-sm-2">
+                                        <button type="submit" class="btn btn--contact btn--misty-rose">Send</button>
+                                    </div>
+                                </div>
+                            </form>
+                            <!-- /.End Credit code -->
+                        </div>
+                    </div>
+
+                </div>
+            </div>
         </section>
         <!-- /.End Contact Form section -->
     </main>

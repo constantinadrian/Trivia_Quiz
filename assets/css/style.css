@@ -438,3 +438,28 @@ hr {
         width: 80%;
     }
 }
+
+/* ---------------------------------------- Contact ---------------------------------------- */
+#contact {
+    width: 100%;
+    min-height: 760px;
+
+    background: -webkit-gradient(linear, left bottom, left top, from(rgba(251, 226, 218, 1)), color-stop(rgba(79, 83, 105, 1)), color-stop(rgba(253, 213, 195, 1)), color-stop(rgba(214, 223, 235, 1)), to(rgba(245, 245, 245, 1)));
+    background: -o-linear-gradient(bottom, rgba(251, 226, 218, 1), rgba(79, 83, 105, 1), rgba(253, 213, 195, 1), rgba(214, 223, 235, 1), rgba(245, 245, 245, 1));
+    background: linear-gradient(0deg, rgba(251, 226, 218, 1), rgba(79, 83, 105, 1), rgba(253, 213, 195, 1), rgba(214, 223, 235, 1), rgba(245, 245, 245, 1));
+}
+
+.contact-wrapper {
+    margin: 0 2rem;
+}
+
+.form-control:focus {
+    color: #000;
+    border-color: #4f5369;
+    -webkit-box-shadow: 0 0 0 2px rgba(79, 83, 105,0.3);
+            box-shadow: 0 0 0 2px rgba(79, 83, 105,0.3);
+}
+
+.btn--contact {
+    width: 100%;
+}
