@@ -248,6 +248,10 @@ main {
     h2 {
         font-size: 2rem;
     }
+
+    .landing-section-item-container-inner {
+        padding: 3rem;
+    }
 }
 
 @media only screen and (min-width: 575px) and (max-width: 767px) {
