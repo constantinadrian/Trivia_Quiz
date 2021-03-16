@@ -288,6 +288,16 @@ main {
     padding: 60px 0 0 0;
 }
 
+hr {
+    width: 65%;
+    height: 2px;
+    margin-bottom: 1.5rem;
+    
+    background: -webkit-gradient(linear,left top, right top,from(rgba(245, 245, 245, 1)), color-stop(rgba(79, 83, 105, 1)),to(rgba(245, 245, 245, 1)));    
+    background: -o-linear-gradient(left,rgba(245, 245, 245, 1), rgba(79, 83, 105, 1),rgba(245, 245, 245, 1));    
+    background: linear-gradient(90deg,rgba(245, 245, 245, 1), rgba(79, 83, 105, 1),rgba(245, 245, 245, 1));
+}
+
 .quiz-categories {
     display: -webkit-box;
     display: -ms-flexbox;
