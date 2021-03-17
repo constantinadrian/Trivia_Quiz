@@ -331,6 +331,8 @@ Trivia Quiz is a quiz app build to attract all categories of users by providing 
 
     - Code for function sendMail was adapted from Full Stack Development Course - Interactive Frontend Development - Resume Project at [Code Institute](https://codeinstitute.net/)
 
+    - [Bootstrap](https://getbootstrap.com/) - for navbar with some modification for collapse button, contact form and other clases that I used for making the project responsive.
+
   - #### Content
 
     - The content for this project was adapted from the following websites:
