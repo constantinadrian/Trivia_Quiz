@@ -4,7 +4,7 @@
 
 Trivia Quiz is a quiz app build to attract all categories of users by providing them with different categories and modern design. The reason behind having a modern design is simply because you can implement this app in any future website to attract more visitors and also for them to have some fun by enjoying a quiz.  
 
-[View live project here](https://constantinadrian.github.io/trivia_quizzes/)
+[View live project here](https://constantinadrian.github.io/Trivia_Quiz/)
 
 ## Table of Contents
 
@@ -103,11 +103,11 @@ Trivia Quiz is a quiz app build to attract all categories of users by providing 
 
 - #### Skeleton
 
-    -  Phone Wireframes: [Home](wireframes/home-phone.png) [Game](wireframes/game.png)
+    -  Phone Wireframes: [Home](wireframes/index-iphone.png) [Game](wireframes/game-iphone.png)
 
-    -  Tablet Wireframes: [Home](wireframes/home-tablet.png) [Game](wireframes/game.png)
+    -  Tablet Wireframes: [Home](wireframes/index-ipad.png) [Game](wireframes/game-ipad.png)
 
-    -  Desktop Wireframes: [Home](wireframes/home-desktop.png) [Game](wireframes/game.png)
+    -  Desktop Wireframes: [Home](wireframes/index-desktop.png) [Game](wireframes/game-desktop.png)
 
 [Back to Top](#table-of-contents)
 
@@ -119,7 +119,7 @@ Trivia Quiz is a quiz app build to attract all categories of users by providing 
 
         - Palette:
 
-            ![Palette Colors](readme/palette-colors.jpg) 
+            ![Palette Colors](assets/readme/palette-colors.png) 
 
             - The color was selected from palette colors and for this quiz app, I went with a palette of light and warm colors.
 
@@ -275,11 +275,11 @@ Trivia Quiz is a quiz app build to attract all categories of users by providing 
 
     1. This project was created from the Code Institute project template from [here](https://github.com/Code-Institute-Org/gitpod-full-template) on Github by clicking on "Use this template"
 
-        ![](readme/code-institute-project-template.png)
+        ![](assets/readme/code-institute-project-template.png)
 
     2. Once the project was created I rename it from the settings 
 
-        ![](readme/remane-project-from-settings.png)
+        ![](assets/readme/rename-project-from-settings.png)
 
     3. When the repository was finally completed I open the project with [Gitpod](https://chrome.google.com/webstore/detail/gitpod-dev-environments-i/dodmmooeoklaejobgleioelladacbeki?hl=en) in Chrome browser
 
@@ -340,12 +340,6 @@ Trivia Quiz is a quiz app build to attract all categories of users by providing 
   - #### Content
 
     - https://www.tryinteract.com/blog/ as a general inspiration.
-
-    - Color psychology
-
-        - 
-
-        - 
 
   - #### Media
 
