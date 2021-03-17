@@ -231,7 +231,11 @@ body {
     .game-container-item-inner {
         padding: 3rem;
     }
-
+        
+    .game-start-title {
+        font-size: 36px;
+    }
+    
     .quiz-time {
         font-size: 20px;
     }
