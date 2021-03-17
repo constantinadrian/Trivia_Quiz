@@ -134,3 +134,39 @@ body {
         font-size: 30px;
     }
 }
+
+/* ---------------------------------------- High Score Div---------------------------------------- */
+.quiz-container-item-inner-highscore {
+    width: 100%;
+    min-height: 330px;
+
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -ms-flex-line-pack: center;
+        align-content: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+}
+
+.table {
+    color: #fff;
+}
+
+.table caption {
+    caption-side: top;
+    text-align: center;
+    background-color: rgba(253, 213, 195, 1);
+    color: #000;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.table thead th, .table th, .table td {
+    border-color: rgba(251, 226, 218, 1);
+}
