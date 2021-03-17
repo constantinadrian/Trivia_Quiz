@@ -519,3 +519,88 @@ hr {
 .footer-social-links-item a:focus {
     outline: none;
 }
+
+/* ---------------------------------------- 404 Page ---------------------------------------- */
+
+#error-section {
+    width: 100%; 
+    display: flex;
+    flex-direction: row;
+}
+
+.error-container-flex {
+    width: 100%;
+    min-height: 100vh;
+    background: -webkit-gradient(linear, left bottom, left top, from(rgba(251, 226, 218, 1)), color-stop(rgba(79, 83, 105, 1)), color-stop(rgba(253, 213, 195, 1)), color-stop(rgba(214, 223, 235, 1)), to(rgba(245, 245, 245, 1)));
+    background: -o-linear-gradient(bottom, rgba(251, 226, 218, 1), rgba(79, 83, 105, 1), rgba(253, 213, 195, 1), rgba(214, 223, 235, 1), rgba(245, 245, 245, 1));
+    background: linear-gradient(0deg, rgba(251, 226, 218, 1), rgba(79, 83, 105, 1), rgba(253, 213, 195, 1), rgba(214, 223, 235, 1), rgba(245, 245, 245, 1));
+
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-pack: center;
+       -ms-flex-pack: center;
+        justify-content: center;
+    -webkit-box-align: center;   
+        -ms-flex-align: center;   
+            align-items: center;
+}
+
+.error-container-flex-child {
+    width:100% 
+}
+
+.error-container-item-outer{ 
+    max-width:624px;
+    margin: 0 auto;
+}
+
+.error-container-item-inner {
+    max-width: 560px;
+    text-align: center;
+    padding: 1rem;
+    margin: 2rem;
+    border-radius: .5rem;
+    background: rgb(115, 110, 124);
+
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -ms-flex-line-pack: center;
+        align-content: center;
+}
+
+.error-container-item {
+    width: 100%;
+    min-height: 330px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -ms-flex-line-pack: center;
+        align-content: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+} 
+
+.error-title {
+    animation-delay: .7s;
+    color: #fff;
+}
+.error-subtitle {
+    animation-delay: .9s;
+    color: #fff;
+}
+
+.btn--error {
+    animation-delay: 1.1s;
+}
