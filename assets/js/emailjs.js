@@ -1,0 +1,38 @@
+// Credit Function Emailjs adapted from Code Institute - Interactive Frontend Development - Resume
+function sendMail(contactForm) {
+    emailjs.send("gmail", "trivia_quiz", {
+        "to_name": "Trvia Quiz",
+        "from_name": contactForm.fname.value,
+        "from_email": contactForm.emailaddress.value,
+        "subject": contactForm.subject.value,
+        "message": contactForm.message.value
+    })
+    .then(
+        function(response) {
+            $(".contact-form").trigger("reset");
+            console.log("Success", response)
+
+            // Credit code SweetAlert2 - https://sweetalert2.github.io/#download
+            Swal.fire({
+                icon: 'success',
+                title: 'Well done!',
+                text: 'Your message has successfully been sent.'
+            });
+            // End Credit
+        },
+        function(error) {
+            $(".contact-form").trigger("reset");
+            console.log("Failed", error)
+
+            // Credit code SweetAlert2 - https://sweetalert2.github.io/#download
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Something went wrong your message could not be sent. Try again later.',
+            });
+            // End Credit
+        }
+    )
+    return false;
+}
+// End Credit Function Emailjs
