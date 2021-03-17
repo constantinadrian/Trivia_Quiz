@@ -2,7 +2,7 @@
 
 ![Trivia Quiz](readme/amiresponsive.png)
 
-Trivia Quiz is a quiz app build to attract all categories of users by providing them with different categories and modern design, [see Credit for inspiration](#credit). The reason behind having a modern design is simply because you can implement this app in any future website to attract more visitors and also for them to have some fun by enjoying a quiz.  
+Trivia Quiz is a quiz app build to attract all categories of users by providing them with different categories and modern design. The reason behind having a modern design is simply because you can implement this app in any future website to attract more visitors and also for them to have some fun by enjoying a quiz.  
 
 [View live project here](https://constantinadrian.github.io/trivia_quizzes/)
 
@@ -339,7 +339,7 @@ Trivia Quiz is a quiz app build to attract all categories of users by providing 
 
   - #### Content
 
-    - The content for this project was adapted from the following websites:
+    - https://www.tryinteract.com/blog/ as a general inspiration.
 
     - Color psychology
 
