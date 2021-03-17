@@ -333,6 +333,8 @@ Trivia Quiz is a quiz app build to attract all categories of users by providing 
 
     - [Bootstrap](https://getbootstrap.com/) - for navbar with some modification for collapse button, contact form and other clases that I used for making the project responsive.
 
+    - [Favicon](https://favicon.io/favicon-converter/) - for given the code for use in this project; the favicon was created by the developer and saved in all sizes that was needed
+
   - #### Content
 
     - The content for this project was adapted from the following websites:
