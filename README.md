@@ -329,7 +329,7 @@ Trivia Quiz is a quiz app build to attract all categories of users by providing 
 
   - #### Code
 
-    - 
+    - Code for function sendMail was adapted from Full Stack Development Course - Interactive Frontend Development - Resume Project at [Code Institute](https://codeinstitute.net/)
 
   - #### Content
 
