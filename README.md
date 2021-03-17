@@ -335,6 +335,8 @@ Trivia Quiz is a quiz app build to attract all categories of users by providing 
 
     - [Favicon](https://favicon.io/favicon-converter/) - for given the code for use in this project; the favicon was created by the developer and saved in all sizes that was needed
 
+    - [SweetAlert2](https://sweetalert2.github.io/#download) - for box alert that was used on contact form as an response generated on user action when the form is submitted
+
   - #### Content
 
     - The content for this project was adapted from the following websites:
