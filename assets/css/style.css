@@ -463,3 +463,59 @@ hr {
 .btn--contact {
     width: 100%;
 }
+
+/* ---------------------------------------- Footer ---------------------------------------- */
+
+#footer {
+    width: 100%;
+    padding: 2rem;
+    background-color: #4f5369;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.footer-brand {
+    margin: 1rem 0;
+    font-size: 25px;
+    color: #fff;
+}
+
+.footer-brand:hover {
+    text-decoration: none;
+    color: #fff;
+}
+
+.footer-brand-logo {
+    width: 40px;
+    height: auto;
+}
+
+.footer-social-links {
+    display: flex;
+    margin: 1rem 0;
+}
+
+.footer-social-links-item a i {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    padding-top: 12px;
+    margin: 0 1rem;
+    background-color: #d6dfeb;
+    color: #000;
+    text-align: center;
+}
+
+.footer-social-links-item a i:hover {
+    background-color: #000;
+    color: #d6dfeb;
+}
+
+.footer-social-links-item a:focus {
+    outline: none;
+}
