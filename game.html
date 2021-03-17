@@ -49,7 +49,7 @@
                     <div class="game-container-item-inner">
 
                         <!-- Start Quiz Div -->
-                        <div class="game-container-item-inner-start" id="quiz-start">
+                        <div class="game-container-item-inner-start d-none" id="quiz-start">
                             <div class="game-container-item-inner-start-quiz">
                                 <p class="game-start-title">Are you ready?</p>
                             </div>
@@ -121,7 +121,7 @@
                         <!-- /.End HighScore Div -->
 
                         <!-- Quiz Question Container -->
-                        <div class="quiz-container-item-inner-text d-none" id="question-container">
+                        <div class="quiz-container-item-inner-text" id="question-container">
 
                             <div class="quiz-header">
                                 <div class="quiz-brand">
@@ -130,6 +130,37 @@
                                 </div>
 
                                 <div class="quiz-time">Time left <span class="time-left warning">05</span></div>
+                            </div>
+
+                            <div class="quiz-content">
+                                <p class="quiz-question">Which coding language was the #1 programming language in terms of usage on GitHub in 2015?</p>
+                                <div class="options" id="quiz-answers">
+
+                                    <div class="option-wrapper option-wrapper-1">
+                                        <div class="option wrong" id="option-1">
+                                            <div class="text" data-answer="Phyton">Python</div><div class="icon wrong-icon"></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="option-wrapper option-wrapper-2">
+                                        <div class="option correct" id="option-2">
+                                            <div class="text" data-answer="JavaScript">JavaScript</div><div class="icon correct-icon"></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="option-wrapper option-wrapper-3">
+                                        <div class="option" id="option-3">
+                                            <div class="text" data-answer="C#">C#</div><div class="icon"></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="option-wrapper option-wrapper-4">
+                                        <div class="option" id="option-4">
+                                            <div class="text" data-answer="PHP">PHP</div><div class="icon"></div>
+                                        </div>
+                                    </div>
+
+                                </div>   
                             </div>
                             
                         </div>
