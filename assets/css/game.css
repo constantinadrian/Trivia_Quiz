@@ -61,7 +61,7 @@ body {
         align-content: center;
 }
 
-/* ---------------------------------------- Start Game Div ---------------------------------------- */
+/* ---------------------------------------- Start Game Container ---------------------------------------- */
 
 .game-container-item-inner-start {
     width: 100%;
@@ -117,25 +117,8 @@ body {
     color: #000;
 }
 
-/* ---------------------------------------- Media Query ---------------------------------------- */
+/* ---------------------------------------- High Score Container---------------------------------------- */
 
-@media only screen and (min-width: 768px) {
-    .game-container-item-inner {
-        padding: 3rem;
-    }
-}
-
-@media only screen and (min-width: 575px) and (max-width: 767px) {
-   .game-container-item-inner {
-        padding: 2rem;
-    }
-
-    .game-start-title {
-        font-size: 30px;
-    }
-}
-
-/* ---------------------------------------- High Score Div---------------------------------------- */
 .quiz-container-item-inner-highscore {
     width: 100%;
     min-height: 330px;
@@ -169,4 +152,101 @@ body {
 
 .table thead th, .table th, .table td {
     border-color: rgba(251, 226, 218, 1);
+}
+
+/* ---------------------------------------- Quiz Container ---------------------------------------- */
+
+.quiz-container-item-inner-text {
+    width: 100%;
+    min-height: 330px;
+
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -ms-flex-line-pack: center;
+        align-content: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+}
+
+.quiz-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.quiz-brand {
+    font-size: 20px;
+    font-weight: 400;
+    color: #fff;
+}
+
+.quiz-brand-logo {
+    width: 30px;
+    height: auto;
+}
+
+.quiz-brand-text {
+    display: none;
+}
+
+.quiz-time {
+    font-size: 16px;
+    font-weight: 400;
+    padding: 0.3rem 0.5rem;
+    border-radius: 0.8rem;
+
+    background: #E7F6F9;
+    color: #000;
+}
+
+.time-left {
+    padding: 0.2rem 1rem;
+    border-radius: 0.7rem;
+
+    background: rgb(115, 110, 124);
+    color:#fff;
+}
+
+.warning {
+    -webkit-animation: warning .8s infinite;
+            animation: warning .8s infinite;
+}
+
+@keyframes warning {
+    50% {
+        background: #DD2C2F;
+        color:#000;
+    }
+}
+
+/* ---------------------------------------- Media Query ---------------------------------------- */
+
+@media only screen and (min-width: 768px) {
+    .game-container-item-inner {
+        padding: 3rem;
+    }
+
+    .quiz-time {
+        font-size: 20px;
+    }
+    
+    .quiz-brand-text {
+        display: inline;
+    }
+}
+
+@media only screen and (min-width: 575px) and (max-width: 767px) {
+   .game-container-item-inner {
+        padding: 2rem;
+    }
+
+    .game-start-title {
+        font-size: 30px;
+    }
 }
