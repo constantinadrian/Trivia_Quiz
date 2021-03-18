@@ -139,7 +139,7 @@ function timer(time) {
 function updateTimeLeft(timeLeft) {
     // format time to two digit
     if (timeLeft < 10) {
-        $(".time-left").html(`0${timeLeft}`);
+        $(".time-left").html("0" + timeLeft);
     }
     else {
         $(".time-left").html(timeLeft);
