@@ -52,8 +52,19 @@ function validateAnswer(selectedOption) {
     $("#quiz-start").addClass("d-none");
 }
 
+/**
+ * User High Score 
+ */
+function highScore() {
+    $("#highscore-container").removeClass("d-none");
+    $("#quiz-start").addClass("d-none");
+}
+
 // Start quiz
 $("#start-quiz").click(startQuiz);
+
+// High Score button
+$("#high-scores").click(highScore);
 
 // Answer button
 $(".option").click(function() {
