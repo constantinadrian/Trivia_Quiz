@@ -25,9 +25,9 @@ let categories = ["9", "17", "18", "19", "22", "23", "25"]
 if (url.indexOf('?category=') > 0) {
     // get url parts
     urlPartsUserSelected = url.split('?category=');
-    console.log(urlPartsUserSelected);
     checkUserCategory()
-} else {
+} 
+else {
     wrongPathUrl()
 }
 
@@ -37,7 +37,8 @@ if (url.indexOf('?category=') > 0) {
 function checkUserCategory() {
     if (categories.indexOf(urlPartsUserSelected[1]) != -1) {
         console.log("user selected category is true")
-    } else {
+    } 
+    else {
         wrongPathUrl()
     }
 }
@@ -65,8 +66,8 @@ function validateAnswer(selectedOption) {
     if ($(firstChild).attr("data-answer") == "JavaScript") {
         $(selectedOption).addClass("correct");
         $(secondChild).addClass("correct-icon");
-
-    } else {
+    } 
+    else {
         $(selectedOption).addClass("wrong");
         $(secondChild).addClass("wrong-icon")
 
@@ -256,16 +257,12 @@ function storeHighScore() {
         
         if (previousQuiz) {
             // update quizCategory if exist with new score
-            if ("matemathics" in previousQuiz) {
-                console.log(previousQuiz)
-                
+            if ("matemathics" in previousQuiz) {               
                 previousQuiz["matemathics"] = 6;
                 localStorage.setItem('quizResult', JSON.stringify(previousQuiz));
-                // update category with new score
             } 
             else {
                 // create new category and set it's value to quizScore 
-                console.log("create new key and set it's value")
                 let category = "matemathics";
                 let result = 5
                 previousQuiz[category] = result;
@@ -277,7 +274,6 @@ function storeHighScore() {
         // if no previous data create quizResult object
         else {
             let quizResult = {};
-            console.log("no data")
 
             let category = "computers";
             let result = 3
@@ -293,7 +289,6 @@ function storeHighScore() {
     else {
     // Local Storage not available
     console.log("no localStorage for us");
-    console.log(storageAvailable('localStorage'))
     }
 }
 
@@ -303,12 +298,13 @@ function storeHighScore() {
 function retrieveHighScore() {
     // check if user has taken any prevoius quiz
     if (localStorage.getItem('quizResult')) {
+
         // Retrieve the object from localStorage
         let getPreviousQuizResult = localStorage.getItem('quizResult');
 
         return JSON.parse(getPreviousQuizResult)
-    } else {
-        console.log(" user does have any highscore yet");
+    } 
+    else {
         return false
     }
 }
@@ -345,20 +341,16 @@ function retrieveHighScore() {
 
             // display the scores of the stored quiz
             for (key in userHighScores) {
-                console.log(key + userHighScores[key]);
 
                 // use concatination because template strings are not supported in IE
                 let tr = '<tr>' + '<td scope="row">' + key + '</td>' + '<td>' + userHighScores[key] + '</td>' + '</tr>'
                 tbody += tr;
 
-                console.log(tbody);
             }
             table.innerHTML = caption + thead + tbody
         }
         // display message why user does have any score
         else {
-
-            console.log("storage available true");
             caption = '\
                     <caption>You don\'t have any scores yet!</caption>\
                     ';
