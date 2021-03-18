@@ -24,14 +24,14 @@ function validateAnswer(selectedOption) {
         $(secondChild).addClass("wrong-icon")
 
         // iterate thru nodelist and highlight which option was the corect answer
-        for (let option of optionAnswers) {
+        for (let i = 0, l = optionAnswers.length; i < l; i++) {
 
-            let firstChild = $(option).children()[0];
-            let secondChild = $(option).children()[1];
+            let firstChild = $(optionAnswers[i]).children()[0];
+            let secondChild = $(optionAnswers[i]).children()[1];
 
             if($(firstChild).attr("data-answer") == "JavaScript") {
 
-                $(option).addClass("correct");
+                $(optionAnswers[i]).addClass("correct");
                 $(secondChild).addClass("correct-icon")
                 break
             }
