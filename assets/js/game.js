@@ -44,6 +44,17 @@ function validateAnswer(selectedOption) {
     $("#next-question").removeClass("d-none");
 }
 
+/**
+ * Start the quiz
+ */
+ function startQuiz() {
+    $("#question-container").removeClass("d-none");
+    $("#quiz-start").addClass("d-none");
+}
+
+// Start quiz
+$("#start-quiz").click(startQuiz);
+
 // Answer button
 $(".option").click(function() {
     validateAnswer($(this)[0]);
