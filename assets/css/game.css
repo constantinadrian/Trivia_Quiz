@@ -84,6 +84,8 @@ body {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
     -ms-flex-pack: distribute;
         justify-content: space-around;
 }
@@ -99,7 +101,7 @@ body {
 
 .btn--game {
     width: 200px;
-    margin: 0 auto;
+    margin-bottom: 1.2rem;
     border-radius: 1rem;
     padding: 0.5rem 0.8rem;
     word-wrap: break-word;
@@ -110,6 +112,21 @@ body {
     transform: translateY(-10px);
     -webkit-box-shadow: 0 16px 30px -2px rgba(66, 59, 59, 0.68);
             box-shadow: 0 16px 30px -2px rgba(66, 59, 59, 0.68);
+}
+
+.btn--game-start {
+    padding: 1rem;
+    border-radius: 1.5rem;
+}
+
+.btn--game-other {
+    border-radius: 1rem;
+    padding: 0.5rem 0.8rem;
+}
+
+.btn--unbleached-silk {
+    background: #fdd5c3;
+    color: #000;
 }
 
 .btn--misty-rose {
@@ -396,5 +413,11 @@ body {
 
     .game-start-title {
         font-size: 30px;
+    }
+}
+
+@media only screen and (min-width: 496px) {
+    .btn--game {
+        margin-bottom: 0;
     }
 }
