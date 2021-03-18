@@ -60,11 +60,22 @@ function highScore() {
     $("#quiz-start").addClass("d-none");
 }
 
+/**
+ * Return user to Start Quiz from high score 
+ */
+function returnToStartQuiz() {
+    $("#highscore-container").addClass("d-none");
+    $("#quiz-start").removeClass("d-none");
+}
+
 // Start quiz
 $("#start-quiz").click(startQuiz);
 
 // High Score button
 $("#high-scores").click(highScore);
+
+// Return to start quiz
+$("#return-to-quiz").click(returnToStartQuiz);
 
 // Answer button
 $(".option").click(function() {
