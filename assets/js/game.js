@@ -95,6 +95,8 @@ function nextQuestion() {
 function highScore() {
     $("#highscore-container").removeClass("d-none");
     $("#quiz-start").addClass("d-none");
+
+    console.log(storageAvailable('localStorage'));
 }
 
 /**
@@ -168,6 +170,36 @@ function updateTimeLeft(timeLeft) {
 
         // show button to move to next question
         $("#next-question").removeClass("d-none");
+    }
+}
+
+// https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API
+/**
+ * Check if localstorege is available
+ * @param {string} type - Holds localstorage
+ */
+function storageAvailable(type) {
+    let storage;
+    try {
+        storage = window[type];
+        let x = '__storage_test__';
+        storage.setItem(x, x);
+        storage.removeItem(x);
+        return true;
+    }
+    catch(e) {
+        return e instanceof DOMException && (
+            // everything except Firefox
+            e.code === 22 ||
+            // Firefox
+            e.code === 1014 ||
+            // test name field too, because code might not be present
+            // everything except Firefox
+            e.name === 'QuotaExceededError' ||
+            // Firefox
+            e.name === 'NS_ERROR_DOM_QUOTA_REACHED') &&
+            // acknowledge QuotaExceededError only if there's something already stored
+            (storage && storage.length !== 0);
     }
 }
 
