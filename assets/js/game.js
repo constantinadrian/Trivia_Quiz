@@ -3,19 +3,25 @@
 // NodeList of all answers
 let optionAnswers = document.querySelectorAll(".option");
 
+// The Counterdown Timer seconds at start
+var time = 10;
+
+// The Counterdown Timer interval ID for setInterval()
+var interval = 0;
+
 /**
  * Validate user answer
  * @param {object} option - The answer the user has chosen
  */
 function validateAnswer(selectedOption) {
 
+    // stop the Countdown counter
+    clearInterval(interval);
+
     let firstChild = $(selectedOption).children()[0];
-
-    // console.log($(firstChild).attr("data-answer"));
-
     let secondChild = $(selectedOption).children()[1];
 
-    if($(firstChild).attr("data-answer") == "JavaScript") {
+    if ($(firstChild).attr("data-answer") == "JavaScript") {
         $(selectedOption).addClass("correct");
         $(secondChild).addClass("correct-icon");
 
@@ -29,7 +35,7 @@ function validateAnswer(selectedOption) {
             let firstChild = $(optionAnswers[i]).children()[0];
             let secondChild = $(optionAnswers[i]).children()[1];
 
-            if($(firstChild).attr("data-answer") == "JavaScript") {
+            if ($(firstChild).attr("data-answer") == "JavaScript") {
 
                 $(optionAnswers[i]).addClass("correct");
                 $(secondChild).addClass("correct-icon")
@@ -38,9 +44,11 @@ function validateAnswer(selectedOption) {
         }
     }
 
+    // disable all options
     $(".option-wrapper").addClass("not-allowed");
     $(".option").addClass("disabled");
 
+    // show button to move to next question
     $("#next-question").removeClass("d-none");
 }
 
@@ -48,6 +56,9 @@ function validateAnswer(selectedOption) {
  * Display next question
  */
 function nextQuestion() {
+    // reset the Countdown counter to default
+    timer(time);
+
     // declare variable to increase progress bar for question 
     let progressWidth = 20
     $(".quiz-footer-progress-fill").width(progressWidth + "%");
@@ -56,6 +67,7 @@ function nextQuestion() {
     let question = 1
     $(".quiz-index-question").html(question + 1);
 
+    $(".time-left").removeClass("warning");
     $(".option").removeClass("disabled correct wrong");
     $(".option-wrapper").removeClass("not-allowed");
     $(".icon").removeClass("correct-icon wrong-icon");
@@ -73,6 +85,8 @@ function nextQuestion() {
  function startQuiz() {
     $("#question-container").removeClass("d-none");
     $("#quiz-start").addClass("d-none");
+    // start the Countdown counter
+    timer(time);
 }
 
 /**
@@ -89,6 +103,72 @@ function highScore() {
 function returnToStartQuiz() {
     $("#highscore-container").addClass("d-none");
     $("#quiz-start").removeClass("d-none");
+}
+
+// Function inspired and modified from Niet the Dark Absol
+// https://stackoverflow.com/questions/1191865/code-for-a-simple-javascript-countdown-timer
+/**
+ * Countdown counter.
+ * @param {number} time - The seconds display at start
+ */
+function timer(time) {
+    clearInterval(interval);
+    // update counter with default time
+    updateTimeLeft(time)
+    // declare variable that holds the current millisends
+    let start = new Date().getTime();
+    interval = setInterval(function() {
+
+        // declare variable that holds seconds left
+        let now = (time * 1000) - (new Date().getTime() - start);
+        // check when Countdown counter needs to be stop
+        if (now < 0) {
+            clearInterval(interval);
+            return
+        }
+        else {
+            updateTimeLeft(Math.round(now/1000));
+        }
+    },100); // the smaller this number, the more accurate the timer will be
+}
+
+/**
+ * Update Countdown counter with current seconds.
+ * @param {number} timeLeft - The current second's display
+ */
+function updateTimeLeft(timeLeft) {
+    // format time to two digit
+    if (timeLeft < 10) {
+        $(".time-left").html(`0${timeLeft}`);
+    }
+    else {
+        $(".time-left").html(timeLeft);
+    }
+
+    // add a warning to make the user aware of his time
+    if (timeLeft == 5) {
+        $(".time-left").addClass("warning");
+    }
+    // show the correct answer if the time it's up
+    else if (timeLeft == 0) {
+        for (let i = 0, l = optionAnswers.length; i < l; i++) {
+
+            let firstChild = $(optionAnswers[i]).children()[0];
+            let secondChild = $(optionAnswers[i]).children()[1];
+
+            if($(firstChild).attr("data-answer") == "JavaScript") {
+                $(optionAnswers[i]).addClass("correct");
+                $(secondChild).addClass("correct-icon")
+            }
+        }
+
+        // disable all options
+        $(".option-wrapper").addClass("not-allowed");
+        $(".option").addClass("disabled");
+
+        // show button to move to next question
+        $("#next-question").removeClass("d-none");
+    }
 }
 
 // Start quiz
