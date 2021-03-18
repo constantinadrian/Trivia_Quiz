@@ -4,10 +4,51 @@
 let optionAnswers = document.querySelectorAll(".option");
 
 // The Counterdown Timer seconds at start
-var time = 10;
+let time = 10;
 
 // The Counterdown Timer interval ID for setInterval()
-var interval = 0;
+let interval = 0;
+
+// Current url
+let url = window.location.href;
+
+// Array that holds the split url 
+let urlPartsUserSelected;
+
+// Array that holds the quiz categories
+let categories = ["9", "17", "18", "19", "22", "23", "25"]
+
+// Check if the URL of the page hasn't been altered (this is in case user typed the url or try to retype different category)
+/**
+ * Check if the query string hasn't been changed
+ */
+if (url.includes('?category=')) {
+    // get url parts
+    urlPartsUserSelected = url.split('?category=');
+    console.log(urlPartsUserSelected);
+    checkUserCategory()
+} else {
+    wrongPathUrl()
+}
+
+/**
+ * Check if user did not change / misspelled the quiz category
+ */
+function checkUserCategory() {
+    if (categories.includes(urlPartsUserSelected[1])) {
+        console.log("user selected category is true")
+    } else {
+        wrongPathUrl()
+    }
+}
+
+/**
+ * Redirect user to 404 page if wrong query was provided / misspelled by user
+ */
+function wrongPathUrl() {
+    let redirectUrl = "404.html" 
+    window.location.href = redirectUrl;  
+}
 
 /**
  * Validate user answer
@@ -290,7 +331,7 @@ function retrieveHighScore() {
             caption = '\
                         <caption>Your Best Scores</caption>\
                         ';
-                        
+
             let thead = '\
                         <thead>\
                             <tr>\
