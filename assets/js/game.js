@@ -22,7 +22,7 @@ let categories = ["9", "17", "18", "19", "22", "23", "25"]
 /**
  * Check if the query string hasn't been changed
  */
-if (url.includes('?category=')) {
+if (url.indexOf('?category=') > 0) {
     // get url parts
     urlPartsUserSelected = url.split('?category=');
     console.log(urlPartsUserSelected);
@@ -35,7 +35,7 @@ if (url.includes('?category=')) {
  * Check if user did not change / misspelled the quiz category
  */
 function checkUserCategory() {
-    if (categories.includes(urlPartsUserSelected[1])) {
+    if (categories.indexOf(urlPartsUserSelected[1]) != -1) {
         console.log("user selected category is true")
     } else {
         wrongPathUrl()
