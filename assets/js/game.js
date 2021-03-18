@@ -96,7 +96,7 @@ function highScore() {
     $("#highscore-container").removeClass("d-none");
     $("#quiz-start").addClass("d-none");
 
-    console.log(storageAvailable('localStorage'));
+    storeHighScore();
 }
 
 /**
@@ -200,6 +200,74 @@ function storageAvailable(type) {
             e.name === 'NS_ERROR_DOM_QUOTA_REACHED') &&
             // acknowledge QuotaExceededError only if there's something already stored
             (storage && storage.length !== 0);
+    }
+}
+
+/**
+ * Store user high score in localStorage if available
+ */
+function storeHighScore() {
+    if (storageAvailable('localStorage')) {
+
+        // check if user have any previous highscore in localStorage
+        previousQuiz = retrieveHiscore();
+        
+        if (previousQuiz) {
+            // update quizCategory if exist with new score
+            if ("matemathics" in previousQuiz) {
+                console.log(previousQuiz)
+                
+                previousQuiz["matemathics"] = 6;
+                localStorage.setItem('quizResult', JSON.stringify(previousQuiz));
+                // update category with new score
+            } 
+            else {
+                // create new category and set it's value to quizScore 
+                console.log("create new key and set it's value")
+                let category = "matemathics";
+                let result = 5
+                previousQuiz[category] = result;
+
+                // Put the object into localStorage
+                localStorage.setItem('quizResult', JSON.stringify(previousQuiz));
+            }
+        }
+        // if no previous data create quizResult object
+        else {
+            let quizResult = {};
+            console.log("no data")
+
+            let category = "computers";
+            let result = 3
+            quizResult[category] = result;
+
+            // Put the object into localStorage
+            localStorage.setItem('quizResult', JSON.stringify(quizResult));
+        }
+
+        // for test
+        // localStorage.removeItem("quizResult");
+    }
+    else {
+    // Local Storage not available
+    console.log("no localStorage for us");
+    console.log(storageAvailable('localStorage'))
+    }
+}
+
+/**
+ * Retrive user highscore if exists
+ */
+function retrieveHiscore() {
+    // check if user has taken any prevoius quiz
+    if (localStorage.getItem('quizResult')) {
+        // Retrieve the object from localStorage
+        let getPreviousQuizResult = localStorage.getItem('quizResult');
+
+        return JSON.parse(getPreviousQuizResult)
+    } else {
+        console.log(" user does have any highscore yet");
+        return false
     }
 }
 
