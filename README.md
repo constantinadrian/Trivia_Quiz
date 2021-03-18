@@ -173,6 +173,8 @@ Trivia Quiz is a quiz app build to attract all categories of users by providing 
 
     - [JSHint](https://jshint.com/) - used to check JS code for error
 
+    - [JSDoc](https://jsdoc.app/) - document the JavaScript code with JSDoc
+
     - [I Am Responsive](http://ami.responsivedesign.is/) - for the main image in Readme to show responsive to different screen size
 
     - [Balsamiq](https://balsamiq.com/) - used to make the wireframes for the project
@@ -336,6 +338,10 @@ Trivia Quiz is a quiz app build to attract all categories of users by providing 
     - [Favicon](https://favicon.io/favicon-converter/) - for given the code for use in this project; the favicon was created by the developer and saved in all sizes that was needed
 
     - [SweetAlert2](https://sweetalert2.github.io/#download) - for box alert that was used on contact form as an response generated on user action when the form is submitted
+
+    - [Stack Overflow](https://stackoverflow.com/questions/1191865/code-for-a-simple-javascript-countdown-timer) - function inspired and modified Countdown timer used for quiz
+
+    - [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API) - for the function to check local storage available
 
   - #### Content
 
