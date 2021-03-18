@@ -97,6 +97,7 @@ function highScore() {
     $("#quiz-start").addClass("d-none");
 
     storeHighScore();
+    displayHighScore();
 }
 
 /**
@@ -210,7 +211,7 @@ function storeHighScore() {
     if (storageAvailable('localStorage')) {
 
         // check if user have any previous highscore in localStorage
-        previousQuiz = retrieveHiscore();
+        previousQuiz = retrieveHighScore();
         
         if (previousQuiz) {
             // update quizCategory if exist with new score
@@ -258,7 +259,7 @@ function storeHighScore() {
 /**
  * Retrive user highscore if exists
  */
-function retrieveHiscore() {
+function retrieveHighScore() {
     // check if user has taken any prevoius quiz
     if (localStorage.getItem('quizResult')) {
         // Retrieve the object from localStorage
@@ -268,6 +269,68 @@ function retrieveHiscore() {
     } else {
         console.log(" user does have any highscore yet");
         return false
+    }
+}
+
+/**
+ * Retrive user highscore if exists
+ */
+ function displayHighScore() {
+    let table = document.querySelector(".table");
+    let caption = '';
+
+    // check if local storage is available
+    if (storageAvailable('localStorage')) {
+
+        // check if user have any previous highscore in localStorage
+        userHighScores = retrieveHighScore();
+        
+        if (userHighScores) {
+
+            caption = '\
+                        <caption>Your Best Scores</caption>\
+                        ';
+                        
+            let thead = '\
+                        <thead>\
+                            <tr>\
+                                <th scope="col">Quiz</th>\
+                                <th scope="col">Score</th>\
+                            </tr>\
+                        </thead>\
+                        ';
+
+            let tbody = '';
+
+            // display the scores of the stored quiz
+            for (key in userHighScores) {
+                console.log(key + userHighScores[key]);
+
+                // use concatination because template strings are not supported in IE
+                let tr = '<tr>' + '<td scope="row">' + key + '</td>' + '<td>' + userHighScores[key] + '</td>' + '</tr>'
+                tbody += tr;
+
+                console.log(tbody);
+            }
+            table.innerHTML = caption + thead + tbody
+        }
+        // display message why user does have any score
+        else {
+
+            console.log("storage available true");
+            caption = '\
+                    <caption>You don\'t have any scores yet!</caption>\
+                    ';
+
+            table.innerHTML = caption
+        }
+    }
+    else {
+        caption = '\
+                <caption>Local Storage not available!</caption>\
+                ';
+
+        table.innerHTML = caption
     }
 }
 
