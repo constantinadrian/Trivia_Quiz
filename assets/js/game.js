@@ -45,6 +45,29 @@ function validateAnswer(selectedOption) {
 }
 
 /**
+ * Display next question
+ */
+function nextQuestion() {
+    // declare variable to increase progress bar for question 
+    let progressWidth = 20
+    $(".quiz-footer-progress-fill").width(progressWidth + "%");
+
+    // declare variable to display the number of current question 
+    let question = 1
+    $(".quiz-index-question").html(question + 1);
+
+    $(".option").removeClass("disabled correct wrong");
+    $(".option-wrapper").removeClass("not-allowed");
+    $(".icon").removeClass("correct-icon wrong-icon");
+
+    // hide button for next question
+    $("#next-question").addClass("d-none");
+
+    // move scroll to the top so user can read next question - for phone 
+    $('html, body').scrollTop("0"); 
+}
+
+/**
  * Start the quiz
  */
  function startQuiz() {
@@ -76,6 +99,9 @@ $("#high-scores").click(highScore);
 
 // Return to start quiz
 $("#return-to-quiz").click(returnToStartQuiz);
+
+// Go to next question button
+$("#next-question").click(nextQuestion);
 
 // Answer button
 $(".option").click(function() {
