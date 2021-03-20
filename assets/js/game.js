@@ -21,6 +21,9 @@ let categories = ["9", "17", "18", "19", "22", "23", "25"]
 // Get token URL
 let tokenUrl = "https://opentdb.com/api_token.php?command=request";
 
+// User selected quiz category
+let selectedQuizCategory = "";
+
 // Check if the URL of the page hasn't been altered (this is in case user typed the url or try to retype different category)
 /**
  * Check if the query string hasn't been changed
@@ -39,7 +42,7 @@ else {
  */
 function checkUserCategory() {
     if (categories.indexOf(urlPartsUserSelected[1]) != -1) {
-        console.log("user selected category is true")
+        selectedQuizCategory = urlPartsUserSelected[1];
     } 
     else {
         wrongPathUrl()
@@ -136,6 +139,10 @@ function nextQuestion() {
     getQuizToken(tokenUrl);
 }
 
+/**
+ * Get session token for quiz
+ * @param {string} url - Holds url address to api call for session token
+ */
 function getQuizToken(url) {
     let xhr = new XMLHttpRequest();
 
@@ -151,12 +158,11 @@ function getQuizToken(url) {
                 // if JSON.parse() was succesufull put the token in sessionStorage if available
                 if (storageAvailable('sessionStorage')) 
                 {
-                    console.log("token stored in session")
                     sessionStorage.setItem("quizToken", JSON.stringify({"token": triviaQuizToken}));
                 }
 
                 // get Quiz Data using token
-                console.log(triviaQuizToken);              
+                getQuizData(triviaQuizToken);              
             } 
             catch (e) {
                 // Display error to user in case the JSON.parse() throw an exception
@@ -169,6 +175,43 @@ function getQuizToken(url) {
         }
     };
 };
+
+/**
+ * Get session token for quiz
+ * @param {string} triviaQuizToken - Session token used to make the API call for quiz data
+ */
+function getQuizData(triviaQuizToken) {
+
+    // Declare variable for API Quiz URL
+    let quizDataUrl = "https://opentdb.com/api.php?amount=10&category=" + selectedQuizCategory + "&difficulty=medium&token=" + triviaQuizToken;
+    console.log(quizDataUrl)
+
+    let xhr = new XMLHttpRequest();
+
+    xhr.open("GET", quizDataUrl)
+    xhr.send()
+
+    xhr.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            // catch exception from JSON.parse()
+            try {
+                triviaQuizData = JSON.parse(this.responseText); 
+
+                console.log(triviaQuizData);
+            
+            } 
+            catch (e) {
+                // Display error to user in case the JSON.parse() throw an exception
+                console.log("quiz-data-error", e);
+            }
+        }
+        // Display error to user in case we could not communicate successufull with Database
+        else if (this.readyState == 4 && this.status != 200) {
+            console.log("database-error-response")
+        }
+    };
+}
+
 
 /**
  * User High Score 
