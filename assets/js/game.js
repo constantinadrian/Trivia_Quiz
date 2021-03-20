@@ -193,12 +193,12 @@ function getQuizToken(url) {
             } 
             catch (e) {
                 // Display error to user in case the JSON.parse() throw an exception
-                console.log("token-error", e);
+                errorMessage("token-error", e);
             }
         }
         // Display error to user in case we could not communicate successufull with Database
         else if (this.readyState == 4 && this.status != 200) {
-            console.log("database-error-response")
+            errorMessage("database-error-response")
         }
     };
 };
@@ -229,12 +229,12 @@ function getQuizData(triviaQuizToken) {
             } 
             catch (e) {
                 // Display error to user in case the JSON.parse() throw an exception
-                console.log("quiz-data-error", e);
+                errorMessage("quiz-data-error", e);
             }
         }
         // Display error to user in case we could not communicate successufull with Database
         else if (this.readyState == 4 && this.status != 200) {
-            console.log("database-error-response")
+            errorMessage("database-error-response")
         }
     };
 }
@@ -252,11 +252,11 @@ function checkQuizDataResponseCode(triviaQuizData) {
     }
     // Could not return results. The API doesn't have enough questions for your query
     else if (triviaQuizData.response_code == 1) {
-        console.log("not-enough-questions-error-response")
+        errorMessage("not-enough-questions-error-response")
     }
     // Contains an invalid parameter
     else if (triviaQuizData.response_code == 2) {
-        console.log("invalid-parameter-passed")
+        errorMessage("invalid-parameter-passed")
     }
     // Session Token does not exist
     else if (triviaQuizData.response_code == 3) {
@@ -266,6 +266,37 @@ function checkQuizDataResponseCode(triviaQuizData) {
     else if (triviaQuizData.response_code == 4) {
         getQuizToken(resetTokenUrl + triviaQuizToken);
     }
+}
+
+/**
+ * Display error message to user in case of failed response from API call
+ * @param {string} errorType - The type of error
+ * @param {Object} error - Error object thrown from API call 
+ */
+function errorMessage(errorType, error) {
+    let message;
+    if (errorType == "database-error-response") {
+        
+        message = 'An error occurred while trying to communicate with Trivia Quiz Database. <br>Please refresh the page or try again later. <br>If the problem continues, <span class="error-contact-link"><a href="index.html#contact" aria-label="Go to Contact form">contact us.</a></span>'
+    }
+    else if (errorType == "token-error") {
+        message = 'Token: The request content was invalid and could not be formatted. <br>Please refresh the page or try again later. <br>If the problem continues, <span class="error-contact-link"><a href="index.html#contact" aria-label="Go to Contact form">contact us.</a></span>'
+    }
+    else if (errorType == "quiz-data-error") {
+        message = 'Quiz: The request content was invalid and could not be formatted. <br>Please refresh the page or try again later. <br>If the problem continues, <span class="error-contact-link"><a href="index.html#contact" aria-label="Go to Contact form">contact us.</a></span>'
+    }
+    else if (errorType == "not-enough-questions-error-response") {
+        message = 'Quiz: The request content was invalid due to not enough question in Trvia Quiz Database. <br>Please select different category or try again later. <br>If the problem continues, <span class="error-contact-link"><a href="index.html#contact" aria-label="Go to Contact form">contact us.</a></span>'
+    }
+    else if (errorType == "invalid-parameter-passed") {
+        message = 'Quiz: The request content was invalid due to invalid parameter in the request link. <br>Please refresh the page or select different category. <br>If the problem continues, <span class="error-contact-link"><a href="index.html#contact" aria-label="Go to Contact form">contact us.</a></span>'
+    }
+    // $("#question-container").removeClass("d-none");
+    $(".error-title").html(error.name)
+    $(".error-content").html(message)
+
+    $("#quiz-start").addClass("d-none");
+    $("#error-container").removeClass("d-none");
 }
 
 /**
@@ -284,7 +315,6 @@ function checkQuizDataResponseCode(triviaQuizData) {
         return false
     }
 }
-
 
 /**
  * User High Score 
@@ -536,4 +566,9 @@ $("#next-question").click(nextQuestion);
 // Answer button
 $(".option").click(function() {
     validateAnswer($(this)[0]);
+});
+
+// Reload the page if user got any errors
+$("#reload-page").click(function(){
+    window.location.reload();
 });

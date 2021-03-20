@@ -80,7 +80,8 @@ body {
             flex-direction: column;
 }
 
-.game-container-item-inner-start-quiz {
+.game-container-item-inner-start-quiz 
+.error-content-item {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -136,7 +137,8 @@ body {
 
 /* ---------------------------------------- High Score Container---------------------------------------- */
 
-.quiz-container-item-inner-highscore {
+.quiz-container-item-inner-highscore,
+.quiz-container-item-inner-error {
     width: 100%;
     min-height: 330px;
 
@@ -380,6 +382,22 @@ body {
     transform: translateY(-10px);
     -webkit-box-shadow: 0 16px 20px -3px rgba(66, 59, 59, 0.68);
             box-shadow: 0 16px 20px -3px rgba(66, 59, 59, 0.68);
+}
+
+/* ---------------------------------------- Error Container ---------------------------------------- */
+
+.error-content {
+    color: #fff;
+}
+
+.error-contact-link a {
+    text-decoration: none;
+    outline: none;
+    color: #000;
+}
+
+.error-contact-link a:hover {
+    color: #000;
 }
 
 /* ---------------------------------------- Media Query ---------------------------------------- */

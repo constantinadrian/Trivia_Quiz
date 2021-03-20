@@ -120,19 +120,35 @@
                             </div>
 
                             <div class="quiz-footer">
+
                                 <div class="quiz-footer-progress-wrapper">
                                     <div class="quiz-footer-progress-label">Question <span class="quiz-index-question">1</span> of 10</div>
                                     <div class="quiz-footer-progress-bar">
                                         <div class="quiz-footer-progress-track"></div>
                                         <div class="quiz-footer-progress-fill"></div>
                                     </div>
-                                    
                                 </div>
+
                                 <button type="button" class="btn btn--next btn--misty-rose d-none" id="next-question" aria-label="Go to next question">Next</button>
+
                             </div>
-                            
                         </div>
-                        <!-- /.End Quiz Question Div -->                          
+                        <!-- /.End Quiz Question Div -->    
+                        
+                        <!-- Error Message Container -->
+                        <div class="quiz-container-item-inner-error d-none" id="error-container">
+                            <div class="error-content-item">
+                                <p class="error-title game-start-title">Error</p>
+                            </div>
+                            <div class="error-content-item">
+                                <p class="error-content"></p>
+                            </div>
+                            <div class="error-content-item">
+                                <button type="button" class="btn btn--game btn--game-other btn--unbleached-silk" id="reload-page" aria-label="Reload window page">Reload Page <i class="fas fa-redo"></i></button>
+                                <a href="index.html#categories" role="button" class="btn btn--game btn--game-other btn--misty-rose" aria-label="Return to quiz categories"><i class="fas fa-undo"></i> Back to categories</a>
+                            </div>
+                        </div>
+                        <!-- /.End Error Message -->
 
                     </div>
                 </div>
