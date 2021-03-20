@@ -21,11 +21,23 @@ let categories = ["9", "17", "18", "19", "22", "23", "25"]
 // Get token URL
 let tokenUrl = "https://opentdb.com/api_token.php?command=request";
 
+// URL to reset session token
+let resetTokenUrl = "https://opentdb.com/api_token.php?command=reset&token="
+
 // Declare variable to hold quiz token
 let triviaQuizToken
 
 // User selected quiz category
 let selectedQuizCategory
+
+// Declare object to hold quiz questions
+let quizQuestions = {};
+
+// Declare question index variable to track of each 
+let quizQuestionsIndex = 0;
+
+// Declare variable to keep track of user score
+let quizScore = 0;
 
 // Check if the URL of the page hasn't been altered (this is in case user typed the url or try to retype different category)
 /**
@@ -156,7 +168,7 @@ function nextQuestion() {
 
 /**
  * Get session token for quiz
- * @param {string} url - Holds url address to api call for session token
+ * @param {string} url - Holds url address to API call for session token
  */
 function getQuizToken(url) {
     let xhr = new XMLHttpRequest();
@@ -192,7 +204,7 @@ function getQuizToken(url) {
 };
 
 /**
- * Get session token for quiz
+ * Get quiz data from TRIVIA API 
  * @param {string} triviaQuizToken - Session token used to make the API call for quiz data
  */
 function getQuizData(triviaQuizToken) {
@@ -212,7 +224,7 @@ function getQuizData(triviaQuizToken) {
             try {
                 triviaQuizData = JSON.parse(this.responseText); 
 
-                console.log(triviaQuizData);
+                checkQuizDataResponseCode(triviaQuizData);
             
             } 
             catch (e) {
@@ -225,6 +237,35 @@ function getQuizData(triviaQuizToken) {
             console.log("database-error-response")
         }
     };
+}
+
+// All error codes were thaken from https://opentdb.com/api_config.php#apiInfo
+/**
+ * Check if Quiz Data response code is succesufull or not
+ * @param {Object} triviaQuizData - Data object receive from reponse call from TRIVIA API 
+ */
+function checkQuizDataResponseCode(triviaQuizData) {
+    // Result returned successfully
+    if (triviaQuizData.response_code == 0) {
+        quizQuestions = triviaQuizData.results
+        console.log(quizQuestions);
+    }
+    // Could not return results. The API doesn't have enough questions for your query
+    else if (triviaQuizData.response_code == 1) {
+        console.log("not-enough-questions-error-response")
+    }
+    // Contains an invalid parameter
+    else if (triviaQuizData.response_code == 2) {
+        console.log("invalid-parameter-passed")
+    }
+    // Session Token does not exist
+    else if (triviaQuizData.response_code == 3) {
+        getQuizToken(tokenUrl);
+    }
+    // Session Token has returned all possible questions for the specified query. Resetting the Token is necessary
+    else if (triviaQuizData.response_code == 4) {
+        getQuizToken(resetTokenUrl + triviaQuizToken);
+    }
 }
 
 /**
