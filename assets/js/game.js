@@ -21,8 +21,11 @@ let categories = ["9", "17", "18", "19", "22", "23", "25"]
 // Get token URL
 let tokenUrl = "https://opentdb.com/api_token.php?command=request";
 
+// Declare variable to hold quiz token
+let triviaQuizToken
+
 // User selected quiz category
-let selectedQuizCategory = "";
+let selectedQuizCategory
 
 // Check if the URL of the page hasn't been altered (this is in case user typed the url or try to retype different category)
 /**
@@ -136,7 +139,19 @@ function nextQuestion() {
     // // start the Countdown counter
     // timer(time);
 
-    getQuizToken(tokenUrl);
+    if (storageAvailable('sessionStorage')) 
+    {
+        let quizSessionToken = retrieveSessionToken()
+        if (quizSessionToken) {
+            getQuizData(quizSessionToken["token"]);
+        }
+        else {
+            getQuizToken(tokenUrl);
+        }
+    }
+    else {
+        getQuizToken(tokenUrl);
+    }
 }
 
 /**
@@ -210,6 +225,23 @@ function getQuizData(triviaQuizToken) {
             console.log("database-error-response")
         }
     };
+}
+
+/**
+ * Retrieve session token 
+ */
+ function retrieveSessionToken() {
+    // check if user has taken any prevoius quiz
+    if (sessionStorage.getItem('quizResult')) {
+
+        // Retrieve the object from localStorage
+        let sessionToken = sessionStorage.getItem('quizToken');
+
+        return JSON.parse(sessionToken)
+    } 
+    else {
+        return false
+    }
 }
 
 
