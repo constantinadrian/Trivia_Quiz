@@ -57,6 +57,7 @@ else {
  */
 function checkUserCategory() {
     if (categories.indexOf(urlPartsUserSelected[1]) != -1) {
+        // assign selected category to global variable
         selectedQuizCategory = urlPartsUserSelected[1];
     } 
     else {
@@ -154,9 +155,10 @@ function nextQuestion() {
     if (storageAvailable('sessionStorage')) 
     {
         let quizSessionToken = retrieveSessionToken()
-        console.log(quizSessionToken)
         if (quizSessionToken) {
-            getQuizData(quizSessionToken["token"]);
+            // assign token to global variable
+            triviaQuizToken = quizSessionToken["token"]
+            getQuizData(triviaQuizToken);
         }
         else {
             getQuizToken(tokenUrl);
@@ -194,7 +196,7 @@ function getQuizToken(url) {
             } 
             catch (e) {
                 // Display error to user in case the JSON.parse() throw an exception
-                errorMessage("token-error", e);
+                errorMessage("token-error", e.name);
             }
         }
         // Display error to user in case we could not communicate successufull with Database
@@ -211,8 +213,7 @@ function getQuizToken(url) {
 function getQuizData(triviaQuizToken) {
 
     // Declare variable for API Quiz URL
-    let quizDataUrl = "https://opentdb.com/api.php?amount=10&category=" + selectedQuizCategory + "&difficulty=medium&token=" + triviaQuizToken;
-    console.log(quizDataUrl)
+    let quizDataUrl = "https://opentdb.com/api.php?amount=100&category=" + selectedQuizCategory + "&difficulty=medium&token=" + triviaQuizToken;
 
     let xhr = new XMLHttpRequest();
 
@@ -230,7 +231,7 @@ function getQuizData(triviaQuizToken) {
             } 
             catch (e) {
                 // Display error to user in case the JSON.parse() throw an exception
-                errorMessage("quiz-data-error", e);
+                errorMessage("quiz-data-error", e.name);
             }
         }
         // Display error to user in case we could not communicate successufull with Database
@@ -272,12 +273,11 @@ function checkQuizDataResponseCode(triviaQuizData) {
 /**
  * Display error message to user in case of failed response from API call
  * @param {string} errorType - The type of error
- * @param {Object} error - Error object thrown from API call 
+ * @param {string} error - Error thrown from API call 
  */
 function errorMessage(errorType, error) {
     let message;
     if (errorType == "database-error-response") {
-        
         message = 'An error occurred while trying to communicate with Trivia Quiz Database. <br>Please refresh the page or try again later. <br>If the problem continues, <span class="error-contact-link"><a href="index.html#contact" aria-label="Go to Contact form">contact us.</a></span>'
     }
     else if (errorType == "token-error") {
@@ -292,9 +292,9 @@ function errorMessage(errorType, error) {
     else if (errorType == "invalid-parameter-passed") {
         message = 'Quiz: The request content was invalid due to invalid parameter in the request link. <br>Please refresh the page or select different category. <br>If the problem continues, <span class="error-contact-link"><a href="index.html#contact" aria-label="Go to Contact form">contact us.</a></span>'
     }
-    // $("#question-container").removeClass("d-none");
-    $(".error-title").html(error.name)
-    $(".error-content").html(message)
+
+    $(".error-title").html(error);
+    $(".error-content").html(message);
 
     $("#quiz-start").addClass("d-none");
     $("#error-container").removeClass("d-none");
