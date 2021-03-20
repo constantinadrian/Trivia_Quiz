@@ -18,6 +18,9 @@ let urlPartsUserSelected;
 // Array that holds the quiz categories
 let categories = ["9", "17", "18", "19", "22", "23", "25"]
 
+// Get token URL
+let tokenUrl = "https://opentdb.com/api_token.php?command=request";
+
 // Check if the URL of the page hasn't been altered (this is in case user typed the url or try to retype different category)
 /**
  * Check if the query string hasn't been changed
@@ -125,11 +128,47 @@ function nextQuestion() {
  * Start the quiz
  */
  function startQuiz() {
-    $("#question-container").removeClass("d-none");
-    $("#quiz-start").addClass("d-none");
-    // start the Countdown counter
-    timer(time);
+    // $("#question-container").removeClass("d-none");
+    // $("#quiz-start").addClass("d-none");
+    // // start the Countdown counter
+    // timer(time);
+
+    getQuizToken(tokenUrl);
 }
+
+function getQuizToken(url) {
+    let xhr = new XMLHttpRequest();
+
+    xhr.open("GET", url)
+    xhr.send()
+
+    xhr.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            // catch exception from JSON.parse()
+            try {
+                triviaQuizToken = JSON.parse(this.responseText).token; 
+
+                // if JSON.parse() was succesufull put the token in sessionStorage if available
+                if (storageAvailable('sessionStorage')) 
+                {
+                    console.log("token stored in session")
+                    sessionStorage.setItem("quizToken", JSON.stringify({"token": triviaQuizToken}));
+                }
+
+                // get Quiz Data using token
+                console.log(triviaQuizToken);              
+            } 
+            catch (e) {
+                // Display error to user in case the JSON.parse() throw an exception
+                console.log("token-error", e);
+            }
+        }
+        // Display error to user in case we could not communicate successufull with Database
+        else if (this.readyState == 4 && this.status != 200) {
+            console.log("database-error-response")
+        }
+    };
+};
 
 /**
  * User High Score 
@@ -138,7 +177,6 @@ function highScore() {
     $("#highscore-container").removeClass("d-none");
     $("#quiz-start").addClass("d-none");
 
-    storeHighScore();
     displayHighScore();
 }
 
