@@ -154,6 +154,7 @@ function nextQuestion() {
     if (storageAvailable('sessionStorage')) 
     {
         let quizSessionToken = retrieveSessionToken()
+        console.log(quizSessionToken)
         if (quizSessionToken) {
             getQuizData(quizSessionToken["token"]);
         }
@@ -304,7 +305,7 @@ function errorMessage(errorType, error) {
  */
  function retrieveSessionToken() {
     // check if user has taken any prevoius quiz
-    if (sessionStorage.getItem('quizResult')) {
+    if (sessionStorage.getItem('quizToken')) {
 
         // Retrieve the object from localStorage
         let sessionToken = sessionStorage.getItem('quizToken');
