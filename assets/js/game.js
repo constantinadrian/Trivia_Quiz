@@ -33,7 +33,7 @@ let selectedQuizCategory
 // Declare array to hold quiz questions
 let quizQuestions;
 
-// Declare question index variable to track of each 
+// Declare question index variable to track each question
 let quizQuestionsIndex = 0;
 
 // Declare variable to keep track of user score
@@ -88,7 +88,7 @@ function validateAnswer(selectedOption) {
     let firstChild = $(selectedOption).children()[0];
     let secondChild = $(selectedOption).children()[1];
 
-    if ($(firstChild).attr("data-answer") == "JavaScript") {
+    if ($(firstChild).attr("data-answer") == quizQuestions[quizQuestionsIndex].correct_answer) {
         $(selectedOption).addClass("correct");
         $(secondChild).addClass("correct-icon");
     } 
@@ -102,7 +102,7 @@ function validateAnswer(selectedOption) {
             let firstChild = $(optionAnswers[i]).children()[0];
             let secondChild = $(optionAnswers[i]).children()[1];
 
-            if ($(firstChild).attr("data-answer") == "JavaScript") {
+            if ($(firstChild).attr("data-answer") == quizQuestions[quizQuestionsIndex].correct_answer) {
 
                 $(optionAnswers[i]).addClass("correct");
                 $(secondChild).addClass("correct-icon")
@@ -123,17 +123,26 @@ function validateAnswer(selectedOption) {
  * Display next question
  */
 function nextQuestion() {
-    // reset the Countdown counter to default
-    timer(time);
-
-    // declare variable to increase progress bar for question 
-    let progressWidth = 20
+    // update question index for next question
+    quizQuestionsIndex++; 
+    // declare variable to increase progress bar base on current question
+    let progressWidth = (quizQuestionsIndex + 1) * 10
     $(".quiz-footer-progress-fill").width(progressWidth + "%");
 
-    // declare variable to display the number of current question 
-    let question = 1
-    $(".quiz-index-question").html(question + 1);
+    // display the number of current question 
+    $(".quiz-index-question").html(quizQuestionsIndex + 1);
 
+    // Remove the disable classes for next question
+    toggleOptions()
+
+    // display the next question 
+    displayQuestions();
+}
+
+/**
+ * Remove the disable classes for next question or next quiz
+ */
+function toggleOptions() {
     $(".time-left").removeClass("warning");
     $(".option").removeClass("disabled correct wrong");
     $(".option-wrapper").removeClass("not-allowed d-none");
@@ -143,7 +152,7 @@ function nextQuestion() {
     $("#next-question").addClass("d-none");
 
     // move scroll to the top so user can read next question - for phone 
-    $('html, body').scrollTop("0"); 
+    $('html, body').scrollTop("0");
 }
 
 /**
@@ -256,10 +265,9 @@ function shuffleArray(questionAnswers, correctAnswer) {
 }
 
 /**
- * Get quiz data from TRIVIA API 
- * @param {array} quizQuestions - Array of objects that each hold category name, question, answers 
+ * Get quiz data from TRIVIA API  
  */
-function displayQuestions(quizQuestions) {
+function displayQuestions() {
     
     $(".quiz-question").html(quizQuestions[quizQuestionsIndex].question)
     if (quizQuestions[quizQuestionsIndex].type == "multiple") {
@@ -297,7 +305,8 @@ function checkQuizDataResponseCode(triviaQuizData) {
     // Result returned successfully
     if (triviaQuizData.response_code == 0) {
         quizQuestions = triviaQuizData.results
-        displayQuestions(quizQuestions)
+        console.log(quizQuestions)
+        displayQuestions()
     }
     // Could not return results. The API doesn't have enough questions for your query
     else if (triviaQuizData.response_code == 1) {
@@ -433,7 +442,7 @@ function updateTimeLeft(timeLeft) {
             let firstChild = $(optionAnswers[i]).children()[0];
             let secondChild = $(optionAnswers[i]).children()[1];
 
-            if($(firstChild).attr("data-answer") == "JavaScript") {
+            if($(firstChild).attr("data-answer") == quizQuestions[quizQuestionsIndex].correct_answer) {
                 $(optionAnswers[i]).addClass("correct");
                 $(secondChild).addClass("correct-icon")
             }
