@@ -80,7 +80,7 @@ body {
             flex-direction: column;
 }
 
-.game-container-item-inner-start-quiz 
+.game-container-item-inner-start-quiz, 
 .error-content-item {
     display: -webkit-box;
     display: -ms-flexbox;

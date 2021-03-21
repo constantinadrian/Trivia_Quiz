@@ -27,7 +27,7 @@ let resetTokenUrl = "https://opentdb.com/api_token.php?command=reset&token="
 // Declare variable to hold quiz token
 let triviaQuizToken
 
-// User selected quiz category
+// User selected quiz category (number)
 let selectedQuizCategory
 
 // Declare array to hold quiz questions
@@ -41,6 +41,9 @@ let quizScore = 0;
 
 // Declare array to hold each question answers
 let quizAnswers;
+
+// quiz category name
+let quizCategoryName
 
 // Check if the URL of the page hasn't been altered (this is in case user typed the url or try to retype different category)
 /**
@@ -162,6 +165,10 @@ function finishQuiz() {
     // Remove the disable classes for next question
     toggleOptions()
 
+    // store the user score in local storage
+    storeHighScore() 
+
+    // reset quiz question index and score for next quiz
     quizQuestionsIndex = 0
     quizScore = 0
 }
@@ -355,6 +362,7 @@ function checkQuizDataResponseCode(triviaQuizData) {
     // Result returned successfully
     if (triviaQuizData.response_code == 0) {
         quizQuestions = triviaQuizData.results
+        quizCategoryName = quizQuestions[quizQuestionsIndex].category
         console.log(quizQuestions)
         displayQuestions()
     }
@@ -548,42 +556,51 @@ function storageAvailable(type) {
 /**
  * Store user high score in localStorage if available
  */
-function storeHighScore() {
+ function storeHighScore() {
     if (storageAvailable('localStorage')) {
 
         // check if user have any previous highscore in localStorage
         previousQuiz = retrieveHighScore();
-        
-        if (previousQuiz) {
-            // update quizCategory if exist with new score
-            if ("matemathics" in previousQuiz) {               
-                previousQuiz["matemathics"] = 6;
-                localStorage.setItem('quizResult', JSON.stringify(previousQuiz));
-            } 
-            else {
-                // create new category and set it's value to quizScore 
-                let category = "matemathics";
-                let result = 5
-                previousQuiz[category] = result;
 
-                // Put the object into localStorage
-                localStorage.setItem('quizResult', JSON.stringify(previousQuiz));
-            }
-        }
         // if no previous data create quizResult object
-        else {
+        if (!previousQuiz) {
+
+            // create object
             let quizResult = {};
 
-            let category = "computers";
-            let result = 3
-            quizResult[category] = result;
+            // set category key and to quizScore value
+            quizResult[quizCategoryName] = quizScore;
 
             // Put the object into localStorage
             localStorage.setItem('quizResult', JSON.stringify(quizResult));
+
+            return
         }
 
-        // for test
-        // localStorage.removeItem("quizResult");
+        // update quizCategory if exist with new score
+        if (quizCategoryName in previousQuiz) {  
+            // check if previuos score is lower than the current score  
+            if (previousQuiz[quizCategoryName] < quizScore) {
+
+                // update quiz category with new score
+                previousQuiz[quizCategoryName] = quizScore;
+                
+                // Put the object into localStorage
+                localStorage.setItem('quizResult', JSON.stringify(previousQuiz));
+
+                return
+            }       
+
+        } 
+        else {
+            // create new category and set it's value to quizScore 
+            previousQuiz[quizCategoryName] = quizScore;
+
+            // Put the object into localStorage
+            localStorage.setItem('quizResult', JSON.stringify(previousQuiz));
+
+            return
+        }
     }
     else {
     // Local Storage not available
