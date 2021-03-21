@@ -30,14 +30,17 @@ let triviaQuizToken
 // User selected quiz category
 let selectedQuizCategory
 
-// Declare object to hold quiz questions
-let quizQuestions = {};
+// Declare array to hold quiz questions
+let quizQuestions;
 
 // Declare question index variable to track of each 
 let quizQuestionsIndex = 0;
 
 // Declare variable to keep track of user score
 let quizScore = 0;
+
+// Declare array to hold each question answers
+let quizAnswers;
 
 // Check if the URL of the page hasn't been altered (this is in case user typed the url or try to retype different category)
 /**
@@ -133,7 +136,7 @@ function nextQuestion() {
 
     $(".time-left").removeClass("warning");
     $(".option").removeClass("disabled correct wrong");
-    $(".option-wrapper").removeClass("not-allowed");
+    $(".option-wrapper").removeClass("not-allowed d-none");
     $(".icon").removeClass("correct-icon wrong-icon");
 
     // hide button for next question
@@ -147,11 +150,6 @@ function nextQuestion() {
  * Start the quiz
  */
  function startQuiz() {
-    // $("#question-container").removeClass("d-none");
-    // $("#quiz-start").addClass("d-none");
-    // // start the Countdown counter
-    // timer(time);
-
     if (storageAvailable('sessionStorage')) 
     {
         let quizSessionToken = retrieveSessionToken()
@@ -213,7 +211,7 @@ function getQuizToken(url) {
 function getQuizData(triviaQuizToken) {
 
     // Declare variable for API Quiz URL
-    let quizDataUrl = "https://opentdb.com/api.php?amount=100&category=" + selectedQuizCategory + "&difficulty=medium&token=" + triviaQuizToken;
+    let quizDataUrl = "https://opentdb.com/api.php?amount=10&category=" + selectedQuizCategory + "&difficulty=medium&token=" + triviaQuizToken;
 
     let xhr = new XMLHttpRequest();
 
@@ -241,6 +239,55 @@ function getQuizData(triviaQuizToken) {
     };
 }
 
+/**
+ * Shuffle array using Durstenfeld shuffle algorithm
+ * @param {array} questionAnswers - Array of that holds answers 
+ * @param {string} correctAnswer - Correct answer to the question
+ */
+function shuffleArray(questionAnswers, correctAnswer) {
+    questionAnswers.push(correctAnswer)
+    for (let i = questionAnswers.length - 1; i > 0; i--) {
+        let j = Math.floor(Math.random() * (i + 1));
+        let temp = questionAnswers[i];
+        questionAnswers[i] = questionAnswers[j];
+        questionAnswers[j] = temp;
+    } 
+    return questionAnswers
+}
+
+/**
+ * Get quiz data from TRIVIA API 
+ * @param {array} quizQuestions - Array of objects that each hold category name, question, answers 
+ */
+function displayQuestions(quizQuestions) {
+    
+    $(".quiz-question").html(quizQuestions[quizQuestionsIndex].question)
+    if (quizQuestions[quizQuestionsIndex].type == "multiple") {
+        // Shuffle the array of answers
+        quizAnswers = shuffleArray(quizQuestions[quizQuestionsIndex].incorrect_answers, quizQuestions[quizQuestionsIndex].correct_answer)
+
+        for (let i = 0; i < 4; i++) {
+            $("#option-" + (1 + i)).html(quizAnswers[i])
+            $("#option-" + (1 + i)).attr("data-answer", quizAnswers[i])
+        }
+    }
+    else {
+        $(".option-wrapper-3").addClass("d-none")
+        $(".option-wrapper-4").addClass("d-none")
+
+        $("#option-1").html("True");
+        $("#option-1").attr("data-answer", "True");
+
+        $("#option-2").html("False");
+        $("#option-2").attr("data-answer", "False");
+    }
+
+    $("#question-container").removeClass("d-none");
+    $("#quiz-start").addClass("d-none");
+    // start the Countdown counter
+    timer(time);
+}
+
 // All error codes were thaken from https://opentdb.com/api_config.php#apiInfo
 /**
  * Check if Quiz Data response code is succesufull or not
@@ -250,7 +297,7 @@ function checkQuizDataResponseCode(triviaQuizData) {
     // Result returned successfully
     if (triviaQuizData.response_code == 0) {
         quizQuestions = triviaQuizData.results
-        console.log(quizQuestions);
+        displayQuestions(quizQuestions)
     }
     // Could not return results. The API doesn't have enough questions for your query
     else if (triviaQuizData.response_code == 1) {
