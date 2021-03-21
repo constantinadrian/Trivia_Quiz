@@ -405,13 +405,19 @@ body {
     max-width: 400px;
 }
 
+.modal-content {
+    background-color: #d6dfeb;
+}
+
 .modal-header {
     justify-content: center;
     align-content: center;
+    border-bottom: none;
 }
 
 .modal-footer {
     justify-content: center;
+    border-top: none;
 }
 
 .modal-body {
