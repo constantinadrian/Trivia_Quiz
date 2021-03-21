@@ -369,7 +369,6 @@ body {
     height: 100%;
     background: rgb(255, 255, 255);
     transition: all 0.6s ease-in;
-    width: 10%;
 }
 
 .btn--next {
@@ -398,6 +397,31 @@ body {
 
 .error-contact-link a:hover {
     color: #000;
+}
+
+/* ---------------------------------------- Finish Quiz Modal ---------------------------------------- */
+
+.modal-sm {
+    max-width: 400px;
+}
+
+.modal-header {
+    justify-content: center;
+    align-content: center;
+}
+
+.modal-footer {
+    justify-content: center;
+}
+
+.modal-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}    
+
+.modal-quiz-text {
+    text-align: center;
 }
 
 /* ---------------------------------------- Media Query ---------------------------------------- */

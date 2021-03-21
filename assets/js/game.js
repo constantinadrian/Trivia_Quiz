@@ -4,7 +4,7 @@
 let optionAnswers = document.querySelectorAll(".option");
 
 // The Counterdown Timer seconds at start
-let time = 10;
+let time = 30;
 
 // The Counterdown Timer interval ID for setInterval()
 let interval = 0;
@@ -91,6 +91,7 @@ function validateAnswer(selectedOption) {
     if ($(firstChild).attr("data-answer") == quizQuestions[quizQuestionsIndex].correct_answer) {
         $(selectedOption).addClass("correct");
         $(secondChild).addClass("correct-icon");
+        quizScore++;
     } 
     else {
         $(selectedOption).addClass("wrong");
@@ -115,8 +116,53 @@ function validateAnswer(selectedOption) {
     $(".option-wrapper").addClass("not-allowed");
     $(".option").addClass("disabled");
 
-    // show button to move to next question
-    $("#next-question").removeClass("d-none");
+    // check if the quiz is finish
+    if (quizQuestionsIndex == 9) {
+        setTimeout(function(){
+                finishQuiz();
+        },1500);
+    }
+    else {
+        // show button to move to next question
+        $("#next-question").removeClass("d-none");
+    }
+}
+
+function finishQuiz() {
+    if (quizScore <= 3) {
+        quizCrown = "red"
+        quizMessage = "Oops. Not your best work ever. <br>Keep at it!"
+    }
+    else if (3 < quizScore < 7 ) {
+        quizCrown = "yellow"
+        quizMessage = "Oh, fair to middling. But you can do better. <br>Keep at it!"
+    }
+    else if (6 < quizScore < 9 ) {
+        quizCrown = "orange"
+        quizMessage = "Great work. Try for 100 % tomorrow."
+    }
+    else {
+        quizCrown = "green"
+        quizMessage = "Perfect. Can you maintain it tomorrow?"
+    }
+
+
+    $(".fa--quiz-crown").css("color", quizCrown);
+    $(".modal-quiz-score").html(quizScore); 
+    $(".modal-quiz-text").html(quizMessage);
+    $('#quiz-modal').modal('show');
+
+    // Prepare for another game
+    $("#start-quiz").html("Play again")
+
+    $("#question-container").addClass("d-none");
+    $("#quiz-start").removeClass("d-none");
+
+    // Remove the disable classes for next question
+    toggleOptions()
+
+    quizQuestionsIndex = 0
+    quizScore = 0
 }
 
 /**
@@ -125,12 +171,6 @@ function validateAnswer(selectedOption) {
 function nextQuestion() {
     // update question index for next question
     quizQuestionsIndex++; 
-    // declare variable to increase progress bar base on current question
-    let progressWidth = (quizQuestionsIndex + 1) * 10
-    $(".quiz-footer-progress-fill").width(progressWidth + "%");
-
-    // display the number of current question 
-    $(".quiz-index-question").html(quizQuestionsIndex + 1);
 
     // Remove the disable classes for next question
     toggleOptions()
@@ -158,13 +198,15 @@ function toggleOptions() {
 /**
  * Start the quiz
  */
- function startQuiz() {
+function startQuiz() {
+
     if (storageAvailable('sessionStorage')) 
     {
         let quizSessionToken = retrieveSessionToken()
         if (quizSessionToken) {
             // assign token to global variable
             triviaQuizToken = quizSessionToken["token"]
+
             getQuizData(triviaQuizToken);
         }
         else {
@@ -289,6 +331,13 @@ function displayQuestions() {
         $("#option-2").html("False");
         $("#option-2").attr("data-answer", "False");
     }
+
+    // declare variable to increase progress bar base on current question
+    let progressWidth = (quizQuestionsIndex + 1) * 10
+    $(".quiz-footer-progress-fill").width(progressWidth + "%");
+
+    // display the number of current question 
+    $(".quiz-index-question").html(quizQuestionsIndex + 1);
 
     $("#question-container").removeClass("d-none");
     $("#quiz-start").addClass("d-none");
@@ -452,8 +501,16 @@ function updateTimeLeft(timeLeft) {
         $(".option-wrapper").addClass("not-allowed");
         $(".option").addClass("disabled");
 
-        // show button to move to next question
-        $("#next-question").removeClass("d-none");
+        // check if the quiz is finish
+        if (quizQuestionsIndex == 9) {
+            setTimeout(function(){
+                 finishQuiz();
+            },1500);
+        }
+        else {
+            // show button to move to next question
+            $("#next-question").removeClass("d-none");
+        }
     }
 }
 
