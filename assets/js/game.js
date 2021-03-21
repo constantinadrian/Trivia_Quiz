@@ -129,21 +129,22 @@ function validateAnswer(selectedOption) {
 }
 
 function finishQuiz() {
-    if (quizScore <= 3) {
-        quizCrown = "red"
-        quizMessage = "Oops. Not your best work ever. <br>Keep at it!"
+    if (quizScore == 10) {
+        quizCrown = "green"
+        quizMessage = "Perfect. Can you maintain it tomorrow?"
     }
-    else if (3 < quizScore < 7 ) {
+    else if (7 <= quizScore && quizScore <= 9) {
+        quizCrown = "orange"
+        quizMessage = "Great work. Try for 100 % tomorrow."
+
+    }
+    else if (4 <= quizScore && quizScore <= 6) { 
         quizCrown = "yellow"
         quizMessage = "Oh, fair to middling. But you can do better. <br>Keep at it!"
     }
-    else if (6 < quizScore < 9 ) {
-        quizCrown = "orange"
-        quizMessage = "Great work. Try for 100 % tomorrow."
-    }
     else {
-        quizCrown = "green"
-        quizMessage = "Perfect. Can you maintain it tomorrow?"
+        quizCrown = "red"
+        quizMessage = "Oops. Not your best work ever. <br>Keep at it!"
     }
 
 
