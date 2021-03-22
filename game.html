@@ -56,8 +56,16 @@
                             <div class="game-container-item-inner-start-quiz">
                                 <button type="button" class="btn btn--game btn--game-start btn--unbleached-silk" id="start-quiz" aria-label="Start Quiz">Let's start this quiz</button>
                             </div>
+                            
                             <div class="game-container-item-inner-start-quiz">
-                                <button type="button" class="btn btn--game btn--game-other btn--misty-rose" id="high-scores" aria-label="View High Scores">High scores <i class="fas fa-crown"></i></button>
+                                <button type="button" class="btn btn--game btn--game-other btn--misty-rose" id="high-scores" aria-label="View High Scores">High scores <i class="fas fa-crown"></i></button>                               
+                            </div>
+
+                            <div class="game-container-item-inner-start-quiz">
+                                <button type="button" class="btn btn--game btn--game-other btn--misty-rose" id="quiz-instructions" aria-label="Go to quiz instructions">Quiz intructions <i class="fas fa-info-circle"></i></button>
+                            </div>
+
+                            <div class="game-container-item-inner-start-quiz">
                                 <a href="index.html#categories" role="button" class="btn btn--game btn--game-other btn--misty-rose" id="return-to-quiz-category" aria-label="Return to quiz categories"><i class="fas fa-undo"></i> Back to categories</a>
                             </div>
                         </div>
@@ -157,16 +165,39 @@
     </div>
     <!-- /.End Game section -->
 
+    <!-- Modal to show instructions about the quiz -->
+    <!-- Credit code Navbar: https://getbootstrap.com/docs/4.6/components/modal/ -->
+    <div class="modal" id="quiz-instructions-modal" tabindex="-1" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+            <div class="modal-header">
+                <p class="quiz-instruction-title">Quiz Instruction</p>
+            </div>
+            <div class="modal-body">
+                <p>1. You will have <strong>10 questions</strong> for each quiz</p>
+                <p>2. You will have <strong>30 second</strong> to answer for each question</p>
+                <p>3. Once an answer is selected, you can't choose a different one</p>
+                <p>4. If the time reaches <strong>0 seconds</strong>, all options will be disabled and the correct answer will be shown to you</p>
+                <p>5. Once you start the quiz, if don't wanna finish it, you can choose to reset it or go back quiz category to select a different one</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.End Credit code -->
+
     <!-- Modal to show score when quiz finish -->
     <!-- Credit code Navbar: https://getbootstrap.com/docs/4.6/components/modal/ -->
-    <div class="modal" id="quiz-modal" tabindex="-1" data-backdrop="static" data-keyboard="false">
+    <div class="modal" id="quiz-score-modal" tabindex="-1" data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog modal-dialog-centered modal-sm">
             <div class="modal-content">
             <div class="modal-header">
                 <i class="fas fa-crown fa-5x fa--quiz-crown"></i>
             </div>
-            <div class="modal-body">
-                <p>Your Score: Your score: <span class="modal-quiz-score"></span> / 10</p>
+            <div class="modal-body modal-body-flex">
+                <p>Your Score: <span class="modal-quiz-score"></span> / 10</p>
                 <p class="modal-quiz-text"></p>
             </div>
             <div class="modal-footer">

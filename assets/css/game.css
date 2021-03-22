@@ -102,7 +102,6 @@ body {
 
 .btn--game {
     width: 200px;
-    margin-bottom: 1.2rem;
     border-radius: 1rem;
     padding: 0.5rem 0.8rem;
     word-wrap: break-word;
@@ -116,6 +115,7 @@ body {
 }
 
 .btn--game-start {
+    margin-bottom: 1.2rem;
     padding: 1rem;
     border-radius: 1.5rem;
 }
@@ -399,7 +399,7 @@ body {
     color: #000;
 }
 
-/* ---------------------------------------- Finish Quiz Modal ---------------------------------------- */
+/* ---------------------------------------- Quiz Modal ---------------------------------------- */
 
 .modal-sm {
     max-width: 400px;
@@ -415,12 +415,16 @@ body {
     border-bottom: none;
 }
 
+.quiz-instruction-title {
+    font-size: 20px;
+}
+
 .modal-footer {
     justify-content: center;
     border-top: none;
 }
 
-.modal-body {
+.modal-body-flex {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -461,11 +465,5 @@ body {
 
     .game-start-title {
         font-size: 30px;
-    }
-}
-
-@media only screen and (min-width: 496px) {
-    .btn--game {
-        margin-bottom: 0;
     }
 }

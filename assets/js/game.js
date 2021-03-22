@@ -154,7 +154,7 @@ function finishQuiz() {
     $(".fa--quiz-crown").css("color", quizCrown);
     $(".modal-quiz-score").html(quizScore); 
     $(".modal-quiz-text").html(quizMessage);
-    $('#quiz-modal').modal('show');
+    $('#quiz-score-modal').modal('show');
 
     // Prepare for another game
     $("#start-quiz").html("Play again")
@@ -688,6 +688,11 @@ $("#start-quiz").click(startQuiz);
 
 // High Score button
 $("#high-scores").click(highScore);
+
+// 
+$("#quiz-instructions").click(function() {
+    $('#quiz-instructions-modal').modal('show');
+});
 
 // Return to start quiz
 $("#return-to-quiz").click(returnToStartQuiz);
