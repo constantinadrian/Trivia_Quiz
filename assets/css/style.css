@@ -51,6 +51,7 @@ button:focus, .navbar-nav a {
 }
 
 .bar {
+    display: block;
     width: 30px;
     height: 3px;
     background-color: black;
