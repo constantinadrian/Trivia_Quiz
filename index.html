@@ -42,7 +42,6 @@
 </head>
 <body>
     <header>
-        <header>
         <!-- Credit code Navbar: https://getbootstrap.com/docs/4.6/components/navbar/ -->
         <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
             <a class="navbar-brand" href="index.html" aria-label="Trivia Quiz Logo">
@@ -50,9 +49,9 @@
                 <span>Trivia Quiz</span> 
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">               
-                <div class="bar bar1"></div>
-                <div class="bar bar2"></div>
-                <div class="bar bar3"></div>
+                <span class="bar bar1"></span>
+                <span class="bar bar2"></span>
+                <span class="bar bar3"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav ml-auto">
@@ -63,7 +62,6 @@
             </div>
         </nav>
         <!-- /.End Credit code -->
-    </header>
     </header>
 
     <main>
@@ -240,8 +238,8 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
     <!-- EmailJS -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
-    <script type="text/javascript">
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
+    <script>
         (function(){
             emailjs.init("user_ApCzStsJvY0Nwtp3I4YST");
         })();
