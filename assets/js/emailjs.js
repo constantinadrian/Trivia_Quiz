@@ -1,5 +1,17 @@
+/**
+ * Set user ID for emailjs service
+ */
+(function(){
+    emailjs.init("user_ApCzStsJvY0Nwtp3I4YST");
+})();
+
 // Credit Function Emailjs adapted from Code Institute - Interactive Frontend Development - Resume
+/**
+ * Send user feedback thru emailjs service
+ * @param {Object} contactForm - Contact form values
+ */
 function sendMail(contactForm) {
+    console.log(typeof(contactForm))
     emailjs.send("gmail", "trivia_quiz", {
         "to_name": "Trvia Quiz",
         "from_name": contactForm.fname.value,
@@ -10,7 +22,6 @@ function sendMail(contactForm) {
     .then(
         function(response) {
             $(".contact-form").trigger("reset");
-            console.log("Success", response)
 
             // Credit code SweetAlert2 - https://sweetalert2.github.io/#download
             Swal.fire({
@@ -22,7 +33,6 @@ function sendMail(contactForm) {
         },
         function(error) {
             $(".contact-form").trigger("reset");
-            console.log("Failed", error)
 
             // Credit code SweetAlert2 - https://sweetalert2.github.io/#download
             Swal.fire({
