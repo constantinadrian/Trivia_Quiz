@@ -1,6 +1,6 @@
 # Trivia Quiz
 
-![Trivia Quiz](readme/amiresponsive.png)
+![Trivia Quiz](assets/readme/trivia-quiz.png)
 
 Trivia Quiz is a quiz app build to attract all categories of users by providing them with different categories and modern design. The reason behind having a modern design is simply because you can implement this app in any future website to attract more visitors and also for them to have some fun by enjoying a quiz.  
 
@@ -71,7 +71,7 @@ Trivia Quiz is a quiz app build to attract all categories of users by providing 
 
           - The logo of Trivia Quiz will take the user to the Home page.
           
-          - Landing section - Where the user can take a random quiz or go to the Quiz Category section or Contact section from the navigation menu.
+          - Landing section - Where the user can take a general quiz or go to the Quiz Category section or Contact section from the navigation menu.
 
           - Quiz Category section - Where users can select a quiz from different categories. 
 
@@ -81,15 +81,17 @@ Trivia Quiz is a quiz app build to attract all categories of users by providing 
 
         2. Game Page 
 
-          - At first, the user has a choice to start the quiz or to view the previous high score if any
+          - At first, the user has a choice to start the quiz or to view the previous high score if any, view quiz instructions or go back to categories
 
           - When starting the quiz the questions are pull from Open Trivia DB API and displayed one by one with a countdown timer
+        
+          - The user can play the quiz that he started or if he changes his mind can reset the quiz or exit the quiz
 
-          - When the quiz is finished, the user will see its score on a popup modal from where he can select to play again the quiz or return to the home page to select a different category.
+          - When the quiz is finished, the user will see its score on a popup modal and after he closes the modal he can to play again the quiz or return to the home page to select a different category.
 
         3. 404 Page
 
-          - 404 Page was added in case users redirect to a page that does not exist. 
+          - 404 Page was added in case users redirect to a page that does not exist.
  
       - ##### Future Features to Implement:
 
@@ -103,11 +105,11 @@ Trivia Quiz is a quiz app build to attract all categories of users by providing 
 
 - #### Skeleton
 
-    -  Phone Wireframes: [Home](wireframes/index-iphone.png) [Game](wireframes/game-iphone.png)
+    -  Phone Wireframes: [Home](assets/wireframes/index-phone.png) [Game](assets/wireframes/game-phone.png)
 
-    -  Tablet Wireframes: [Home](wireframes/index-ipad.png) [Game](wireframes/game-ipad.png)
+    -  Tablet Wireframes: [Home](assets/wireframes/index-tablet.png) [Game](assets/wireframes/game-tablet.png)
 
-    -  Desktop Wireframes: [Home](wireframes/index-desktop.png) [Game](wireframes/game-desktop.png)
+    -  Desktop Wireframes: [Home](assets/wireframes/index-desktop.png) [Game](assets/wireframes/game-desktop.png)
 
 [Back to Top](#table-of-contents)
 
