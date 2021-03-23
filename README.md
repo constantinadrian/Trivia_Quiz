@@ -18,17 +18,17 @@ Trivia Quiz is a quiz app build to attract all categories of users by providing 
 
     - If the quiz is finished, I would like to have the option to restart the quiz immediately without having to return to the main menu.
 
-    - I want a quiz with different scores results, depending on how well I have done on the quiz.
+    - When I restart a quiz, I want to receive new questions for the category.
 
-    - I want to find links to social media to find updates on the trivia-quizzes.
+    - I want a quiz with different scores results, depending on how well I have done on the quiz.
 
     II.	Returning User Goals:
 
-    - When I return to the website, I want to receive new questions for the quizzes. 
+    - I want to find links to social media to find updates on the trivia-quizzes.
 
     - Be able to see my previous scores for each quiz that I take.
 
-    III.	Site Owner Goals:
+    III. Site Owner Goals:
 
     - Create a fun and friendly website where the users can enjoy having a quiz.
 
@@ -87,7 +87,7 @@ Trivia Quiz is a quiz app build to attract all categories of users by providing 
         
           - The user can play the quiz that he started or if he changes his mind can reset the quiz or exit the quiz
 
-          - When the quiz is finished, the user will see its score on a popup modal and after he closes the modal he can to play again the quiz or return to the home page to select a different category.
+          - When the quiz is finished, the user will see its score on a popup modal, and after he closes the modal he can play again the quiz or return to the home page to select a different category.
 
         3. 404 Page
 
@@ -195,59 +195,85 @@ Trivia Quiz is a quiz app build to attract all categories of users by providing 
         
          - Home Page
          
-            ![Home](readme/home.png)
+            ![Home](assets/readme/index-page-test.png)
 
          - Game Page 
          
-            ![Game](readme/game.png) 
+            ![Game](assets/readme/index-page-test.png) 
 
     - [CSS Validator](https://jigsaw.w3.org/css-validator/) - 
     
         - CSS - style.css
         
-            ![Result CSS Validator](readme/css-test.png)
+            ![Result CSS Validator](assets/readme/style-css-validator-result.png)
+
+            - All Warnings were from prefixes
+
+        - CSS - game.css
+
+            ![Result CSS Validator](assets/readme/game-css-validator-result.png)
+
+            - All Warnings were from prefixes
 
     - [Lighthouse in Chrome](https://developers.google.com/web/tools/lighthouse) - [Home](readme/lighthouse-homeindex.png) [Game](readme/lighthouse-home.png)
 
-    - [GTMetrix](https://gtmetrix.com/) - [Home](readme/gtmetrix-home.png) [Game](readme/gtmetrix-about.png)
+    - [GTMetrix](https://gtmetrix.com/) - [Home](assets/readme/gtmetrix-index.png) [Game](assets/readme/gtmetrix-game.png)
 
   - #### Testing User Stories from User Experience (UX) Section
 
     I. First Time Visitor Goals
 
-      - 
+    - I would like to have the option to select a quiz from various categories.
 
-        1. 
+        - When the user enters the site he can immediately play a general quiz, or he can navigate to the Quiz category from the navigation bar or from the by pressing the down arrow from the landing page and select a quiz from various categories.
 
-      - 
+    - If the quiz is finished, I would like to have the option to restart the quiz immediately without having to return to the main menu.
 
-        1.
+        - When the quiz is finished the main quiz start menu will be shown to the user and the start quiz button will display "Play again".
 
-      - 
+    - When I restart a quiz, I want to receive new questions for the category. 
 
-        1. 
+        - Every time a user starts a quiz game for the first time a call for a session token will be made to Trivia Quiz Database and store on sessionStorage, if available, thus every time the user wants to play again a certain category different questions will be displayed.
+
+    - I want a quiz with different scores results, depending on how well I have done on the quiz.
+
+        - After the user finishes the quiz, depending on how many questions he answered correctly a modal will be displayed with the score and a different message depending on the actual score.
 
     II.	Returning User Goals:
 
-      - 
+    - I want to find links to social media to find updates on the trivia-quizzes. 
 
-        1.
+        - On the footer of the page the user can find links to social media to find updates about the new categories of quizzes being added and keep in touch with Trivia Quiz.
 
-      - 
+    - Be able to see my previous scores for each quiz that I take.
 
-        1.
+        - Every time a user finishes a quiz the category and the quiz score will be store in local Storage, if available, and when returning the user can see his history. On local storage, we will store just the highest score for each category.
+
+    III. Site Owner Goals:
+
+    - Create a fun and friendly website where the users can enjoy having a quiz.
+
+        - The design was chosen very carefully and with light warm colors that will attract the user and keep him longer on the site. To make it more friendly, different messages will be displayed when the user finishes the quiz along with the score. 
+
+    - Let users have the option to select the quiz from various categories.
+
+        - The site owner has carefully chosen a Quiz API that has several categories so that the user can benefit from a variety of categories.
+
+    - Let users be able to contact the site owner by email for any recommendation of different quizzes or improvements of any kind.
+
+        - On the index page the user can use the functional contact form to make any suggestions or to request any new quiz categories. 
 
   - #### Testing on Different Browsers
 
     - The following web browsers were used for testing the browser compatibility and responsiveness (System: Windows 10 64-bit).
 
-        1. Chrome - Version 87.0
+        1. Chrome - Version 89.0.4389.90 (Official Build) (64-bit)
 
-        2. Firefox - Version 84.0.2
+        2. Firefox - 87.0 (64-bit)
 
-        3. Edge - Version 87.0
+        3. Edge - Version 89.0.774.57 (Official build) (64-bit)
 
-        4. Opera - Version:73.0
+        4. Opera - Version:74.0.3911.232
 
         5. IE - Version 20H2
 
@@ -265,9 +291,39 @@ Trivia Quiz is a quiz app build to attract all categories of users by providing 
 
   - A large amount of testing was done to ensure that all pages were linked correctly.
 
-  - #### Known Bugs
+  - #### Bugs & Fixs
 
-    - 
+    - Internet Explorer: When press "Let's start this quiz" the quiz game wouldn't start.
+
+        - In game.js, validateAnswer function was used "for (let of)" that was no support in Internet Explorer. 
+
+        - To fix: the "for (let of)" loop was replaced with the "for" loop and the quiz game could start.
+
+    - Internet Explorer: After the user selected an answer from the possible options, he couldn't see the background color of the selected answer of correct or wrong class because the hover background color was still visible.
+
+        - To fix this in game.css was added another rule and the class of correct and wrong was added to selector with pseudo-class hover to have the background of the correct and wrong class wants its added
+
+    - Internet Explorer: After adding the updateTimeLeft function the quiz game didn't start
+
+        - In updateTimeLeft function was use template literals that are not supported in IE.
+
+        - To fix this concatenation was used instead.
+
+    - Internet Explorer: After adding a check on the redirected link from index.html to game.html the quiz game wouldn't start
+    
+        - The includes() method was used to check selected category from the URL and if the query string is not changed as well. The includes() method is not supported in IE.
+
+        - To fix this the includes() method was changed with indexOf().
+
+    - An Uncaught TypeError: error was shown in console.log after implement of "error message function" 
+
+        - The error was happing because in the case of failed to parse the data from API call with JSON.parse the "error" object was send to the implemented function and from there was access to the name of the error. But if the API status call was not 200 no object could be sent thus resulting in an error.
+
+        - To fix this the error.name was sent from the function that was making the API call instead of the object.
+
+    - Wrong message displayed at the finish of the quiz when the score was shown.
+
+        - To fix this the logical AND operator (&&) was used. 
 
  [Back to Top](#table-of-contents)
 
@@ -335,11 +391,11 @@ Trivia Quiz is a quiz app build to attract all categories of users by providing 
 
     - Code for function sendMail was adapted from Full Stack Development Course - Interactive Frontend Development - Resume Project at [Code Institute](https://codeinstitute.net/)
 
-    - [Bootstrap](https://getbootstrap.com/) - for navbar with some modification for collapse button, contact form, table for high score and other clases that I used for making the project responsive.
+    - [Bootstrap](https://getbootstrap.com/) - for navbar with some modification for collapse button, contact form, table for high scores, and other classes that I used for making the project responsive.
 
-    - [Favicon](https://favicon.io/favicon-converter/) - for given the code for use in this project; the favicon was created by the developer and saved in all sizes that was needed
+    - [Favicon](https://favicon.io/favicon-converter/) - for the code for use in this project; the favicon was created by the developer and saved in all sizes that were needed
 
-    - [SweetAlert2](https://sweetalert2.github.io/#download) - for box alert that was used on contact form as an response generated on user action when the form is submitted
+    - [SweetAlert2](https://sweetalert2.github.io/#download) - for box alert that was used on the contact form as a response generated on user action when the form is submitted
 
     - [Stack Overflow](https://stackoverflow.com/questions/1191865/code-for-a-simple-javascript-countdown-timer) - function inspired and modified Countdown timer used for quiz
 
