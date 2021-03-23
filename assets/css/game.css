@@ -409,6 +409,10 @@ body {
             box-shadow: 0 16px 20px -3px rgba(66, 59, 59, 0.68);
 }
 
+.btn--light-cyan {
+    background: #cfeef4;
+}
+
 /* ---------------------------------------- Error Container ---------------------------------------- */
 
 .error-content {
