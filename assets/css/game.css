@@ -533,6 +533,7 @@ body {
 }
 
 .modal-body-flex {
+    width: 100%;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -545,6 +546,18 @@ body {
             align-items: center;
 }    
 
+.modal-body-items {
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+}
+
+.modal-quiz-title-score,
 .modal-quiz-text {
     text-align: center;
 }
