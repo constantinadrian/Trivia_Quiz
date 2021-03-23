@@ -16,19 +16,19 @@ let url = window.location.href;
 let urlPartsUserSelected;
 
 // Array that holds the quiz categories
-let categories = ["9", "17", "18", "19", "22", "23", "25"]
+let categories = ["9", "17", "18", "19", "22", "23", "25"];
 
 // Get token URL
 let tokenUrl = "https://opentdb.com/api_token.php?command=request";
 
 // URL to reset session token
-let resetTokenUrl = "https://opentdb.com/api_token.php?command=reset&token="
+let resetTokenUrl = "https://opentdb.com/api_token.php?command=reset&token=";
 
 // Declare variable to hold quiz token
-let triviaQuizToken
+let triviaQuizToken;
 
 // User selected quiz category (number)
-let selectedQuizCategory
+let selectedQuizCategory;
 
 // Declare array to hold quiz questions
 let quizQuestions;
@@ -43,7 +43,7 @@ let quizScore = 0;
 let quizAnswers;
 
 // quiz category name
-let quizCategoryName
+let quizCategoryName;
 
 // Check if the URL of the page hasn't been altered (this is in case user typed the url or try to retype different category)
 /**
@@ -52,10 +52,10 @@ let quizCategoryName
 if (url.indexOf('?category=') > 0) {
     // get url parts
     urlPartsUserSelected = url.split('?category=');
-    checkUserCategory()
+    checkUserCategory();
 } 
 else {
-    wrongPathUrl()
+    wrongPathUrl();
 }
 
 /**
@@ -67,7 +67,7 @@ function checkUserCategory() {
         selectedQuizCategory = urlPartsUserSelected[1];
     } 
     else {
-        wrongPathUrl()
+        wrongPathUrl();
     }
 }
 
@@ -75,7 +75,7 @@ function checkUserCategory() {
  * Redirect user to 404 page if wrong query was provided / misspelled by user
  */
 function wrongPathUrl() {
-    let redirectUrl = "404.html" 
+    let redirectUrl = "404.html";
     window.location.href = redirectUrl;  
 }
 
@@ -98,7 +98,7 @@ function validateAnswer(selectedOption) {
     } 
     else {
         $(selectedOption).addClass("wrong");
-        $(secondChild).addClass("wrong-icon")
+        $(secondChild).addClass("wrong-icon");
 
         // iterate thru nodelist and highlight which option was the corect answer
         for (let i = 0, l = optionAnswers.length; i < l; i++) {
@@ -109,8 +109,8 @@ function validateAnswer(selectedOption) {
             if ($(firstChild).attr("data-answer") == quizQuestions[quizQuestionsIndex].correct_answer) {
 
                 $(optionAnswers[i]).addClass("correct");
-                $(secondChild).addClass("correct-icon")
-                break
+                $(secondChild).addClass("correct-icon");
+                break;
             }
         }
     }
@@ -133,21 +133,21 @@ function validateAnswer(selectedOption) {
 
 function finishQuiz() {
     if (quizScore == 10) {
-        quizCrown = "green"
-        quizMessage = "Perfect. Can you maintain it tomorrow?"
+        quizCrown = "green";
+        quizMessage = "Perfect. Can you maintain it tomorrow?";
     }
     else if (7 <= quizScore && quizScore <= 9) {
-        quizCrown = "orange"
-        quizMessage = "Great work. Try for 100 % tomorrow."
+        quizCrown = "orange";
+        quizMessage = "Great work. Try for 100 % tomorrow.";
 
     }
     else if (4 <= quizScore && quizScore <= 6) { 
-        quizCrown = "yellow"
-        quizMessage = "Oh, fair to middling. But you can do better. <br>Keep at it!"
+        quizCrown = "yellow";
+        quizMessage = "Oh, fair to middling. But you can do better. <br>Keep at it!";
     }
     else {
-        quizCrown = "red"
-        quizMessage = "Oops. Not your best work ever. <br>Keep at it!"
+        quizCrown = "red";
+        quizMessage = "Oops. Not your best work ever. <br>Keep at it!";
     }
 
 
@@ -157,20 +157,20 @@ function finishQuiz() {
     $('#quiz-score-modal').modal('show');
 
     // Prepare for another game
-    $("#start-quiz").html("Play again")
+    $("#start-quiz").html("Play again");
 
     $("#question-container").addClass("d-none");
     $("#quiz-start").removeClass("d-none");
 
     // Remove the disable classes for next question
-    toggleOptions()
+    toggleOptions();
 
     // store the user score in local storage
-    storeHighScore() 
+    storeHighScore() ;
 
     // reset quiz question index and score for next quiz
-    quizQuestionsIndex = 0
-    quizScore = 0
+    quizQuestionsIndex = 0;
+    quizScore = 0;
 }
 
 /**
@@ -181,7 +181,7 @@ function nextQuestion() {
     quizQuestionsIndex++; 
 
     // Remove the disable classes for next question
-    toggleOptions()
+    toggleOptions();
 
     // display the next question 
     displayQuestions();
@@ -211,10 +211,10 @@ function startQuiz() {
     // check if there is token store in session storage
     if (storageAvailable('sessionStorage')) 
     {
-        let quizSessionToken = retrieveSessionToken()
+        let quizSessionToken = retrieveSessionToken();
         if (quizSessionToken) {
             // assign token to global variable
-            triviaQuizToken = quizSessionToken["token"]
+            triviaQuizToken = quizSessionToken["token"];
 
             getQuizData(triviaQuizToken);
         }
@@ -234,8 +234,8 @@ function startQuiz() {
 function getQuizToken(url) {
     let xhr = new XMLHttpRequest();
 
-    xhr.open("GET", url)
-    xhr.send()
+    xhr.open("GET", url);
+    xhr.send();
 
     xhr.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
@@ -259,7 +259,7 @@ function getQuizToken(url) {
         }
         // Display error to user in case we could not communicate successufull with Database
         else if (this.readyState == 4 && this.status != 200) {
-            errorMessage("database-error-response")
+            errorMessage("database-error-response");
         }
     };
 };
@@ -275,8 +275,8 @@ function getQuizData(triviaQuizToken) {
 
     let xhr = new XMLHttpRequest();
 
-    xhr.open("GET", quizDataUrl)
-    xhr.send()
+    xhr.open("GET", quizDataUrl);
+    xhr.send();
 
     xhr.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
@@ -294,7 +294,7 @@ function getQuizData(triviaQuizToken) {
         }
         // Display error to user in case we could not communicate successufull with Database
         else if (this.readyState == 4 && this.status != 200) {
-            errorMessage("database-error-response")
+            errorMessage("database-error-response");
         }
     };
 }
@@ -305,14 +305,14 @@ function getQuizData(triviaQuizToken) {
  * @param {string} correctAnswer - Correct answer to the question
  */
 function shuffleArray(questionAnswers, correctAnswer) {
-    questionAnswers.push(correctAnswer)
+    questionAnswers.push(correctAnswer);
     for (let i = questionAnswers.length - 1; i > 0; i--) {
         let j = Math.floor(Math.random() * (i + 1));
         let temp = questionAnswers[i];
         questionAnswers[i] = questionAnswers[j];
         questionAnswers[j] = temp;
     } 
-    return questionAnswers
+    return questionAnswers;
 }
 
 /**
@@ -320,19 +320,19 @@ function shuffleArray(questionAnswers, correctAnswer) {
  */
 function displayQuestions() {
     
-    $(".quiz-question").html(quizQuestions[quizQuestionsIndex].question)
+    $(".quiz-question").html(quizQuestions[quizQuestionsIndex].question);
     if (quizQuestions[quizQuestionsIndex].type == "multiple") {
         // Shuffle the array of answers
-        quizAnswers = shuffleArray(quizQuestions[quizQuestionsIndex].incorrect_answers, quizQuestions[quizQuestionsIndex].correct_answer)
+        quizAnswers = shuffleArray(quizQuestions[quizQuestionsIndex].incorrect_answers, quizQuestions[quizQuestionsIndex].correct_answer);
 
         for (let i = 0; i < 4; i++) {
-            $("#option-" + (1 + i)).html(quizAnswers[i])
-            $("#option-" + (1 + i)).attr("data-answer", quizAnswers[i])
+            $("#option-" + (1 + i)).html(quizAnswers[i]);
+            $("#option-" + (1 + i)).attr("data-answer", quizAnswers[i]);
         }
     }
     else {
-        $(".option-wrapper-3").addClass("d-none")
-        $(".option-wrapper-4").addClass("d-none")
+        $(".option-wrapper-3").addClass("d-none");
+        $(".option-wrapper-4").addClass("d-none");
 
         $("#option-1").html("True");
         $("#option-1").attr("data-answer", "True");
@@ -363,19 +363,19 @@ function checkQuizDataResponseCode(triviaQuizData) {
     // Result returned successfully
     if (triviaQuizData.response_code == 0) {
         // get quiz data results
-        quizQuestions = triviaQuizData.results
+        quizQuestions = triviaQuizData.results;
         // get quiz category name to store the data with quiz score
-        quizCategoryName = quizQuestions[quizQuestionsIndex].category
-        console.log(quizQuestions)
-        displayQuestions()
+        quizCategoryName = quizQuestions[quizQuestionsIndex].category;
+        console.log(quizQuestions);
+        displayQuestions();
     }
     // Could not return results. The API doesn't have enough questions for your query
     else if (triviaQuizData.response_code == 1) {
-        errorMessage("not-enough-questions-error-response")
+        errorMessage("not-enough-questions-error-response");
     }
     // Contains an invalid parameter
     else if (triviaQuizData.response_code == 2) {
-        errorMessage("invalid-parameter-passed")
+        errorMessage("invalid-parameter-passed");
     }
     // Session Token does not exist
     else if (triviaQuizData.response_code == 3) {
@@ -395,19 +395,19 @@ function checkQuizDataResponseCode(triviaQuizData) {
 function errorMessage(errorType, error) {
     let message;
     if (errorType == "database-error-response") {
-        message = 'An error occurred while trying to communicate with Trivia Quiz Database. <br>Please refresh the page or try again later. <br>If the problem continues, <span class="error-contact-link"><a href="index.html#contact" aria-label="Go to Contact form">contact us.</a></span>'
+        message = 'An error occurred while trying to communicate with Trivia Quiz Database. <br>Please refresh the page or try again later. <br>If the problem continues, <span class="error-contact-link"><a href="index.html#contact" aria-label="Go to Contact form">contact us.</a></span>';
     }
     else if (errorType == "token-error") {
-        message = 'Token: The request content was invalid and could not be formatted. <br>Please refresh the page or try again later. <br>If the problem continues, <span class="error-contact-link"><a href="index.html#contact" aria-label="Go to Contact form">contact us.</a></span>'
+        message = 'Token: The request content was invalid and could not be formatted. <br>Please refresh the page or try again later. <br>If the problem continues, <span class="error-contact-link"><a href="index.html#contact" aria-label="Go to Contact form">contact us.</a></span>';
     }
     else if (errorType == "quiz-data-error") {
-        message = 'Quiz: The request content was invalid and could not be formatted. <br>Please refresh the page or try again later. <br>If the problem continues, <span class="error-contact-link"><a href="index.html#contact" aria-label="Go to Contact form">contact us.</a></span>'
+        message = 'Quiz: The request content was invalid and could not be formatted. <br>Please refresh the page or try again later. <br>If the problem continues, <span class="error-contact-link"><a href="index.html#contact" aria-label="Go to Contact form">contact us.</a></span>';
     }
     else if (errorType == "not-enough-questions-error-response") {
-        message = 'Quiz: The request content was invalid due to not enough question in Trvia Quiz Database. <br>Please select different category or try again later. <br>If the problem continues, <span class="error-contact-link"><a href="index.html#contact" aria-label="Go to Contact form">contact us.</a></span>'
+        message = 'Quiz: The request content was invalid due to not enough question in Trvia Quiz Database. <br>Please select different category or try again later. <br>If the problem continues, <span class="error-contact-link"><a href="index.html#contact" aria-label="Go to Contact form">contact us.</a></span>';
     }
     else if (errorType == "invalid-parameter-passed") {
-        message = 'Quiz: The request content was invalid due to invalid parameter in the request link. <br>Please refresh the page or select different category. <br>If the problem continues, <span class="error-contact-link"><a href="index.html#contact" aria-label="Go to Contact form">contact us.</a></span>'
+        message = 'Quiz: The request content was invalid due to invalid parameter in the request link. <br>Please refresh the page or select different category. <br>If the problem continues, <span class="error-contact-link"><a href="index.html#contact" aria-label="Go to Contact form">contact us.</a></span>';
     }
 
     $(".error-title").html(error);
@@ -427,10 +427,10 @@ function errorMessage(errorType, error) {
         // Retrieve the object from localStorage
         let sessionToken = sessionStorage.getItem('quizToken');
 
-        return JSON.parse(sessionToken)
+        return JSON.parse(sessionToken);
     } 
     else {
-        return false
+        return false;
     }
 }
 
@@ -461,7 +461,7 @@ function returnToStartQuiz() {
 function timer(time) {
     clearInterval(interval);
     // update counter with default time
-    updateTimeLeft(time)
+    updateTimeLeft(time);
     // declare variable that holds the current millisends
     let start = new Date().getTime();
     interval = setInterval(function() {
@@ -505,7 +505,7 @@ function updateTimeLeft(timeLeft) {
 
             if($(firstChild).attr("data-answer") == quizQuestions[quizQuestionsIndex].correct_answer) {
                 $(optionAnswers[i]).addClass("correct");
-                $(secondChild).addClass("correct-icon")
+                $(secondChild).addClass("correct-icon");
             }
         }
 
@@ -577,7 +577,7 @@ function storageAvailable(type) {
             // Put the object into localStorage
             localStorage.setItem('quizResult', JSON.stringify(quizResult));
 
-            return
+            return;
         }
 
         // update quizCategory if exist with new score
@@ -591,7 +591,7 @@ function storageAvailable(type) {
                 // Put the object into localStorage
                 localStorage.setItem('quizResult', JSON.stringify(previousQuiz));
 
-                return
+                return;
             }       
 
         } 
@@ -602,12 +602,8 @@ function storageAvailable(type) {
             // Put the object into localStorage
             localStorage.setItem('quizResult', JSON.stringify(previousQuiz));
 
-            return
+            return;
         }
-    }
-    else {
-    // Local Storage not available
-    console.log("no localStorage for us");
     }
 }
 
@@ -621,10 +617,10 @@ function retrieveHighScore() {
         // Retrieve the object from localStorage
         let getPreviousQuizResult = localStorage.getItem('quizResult');
 
-        return JSON.parse(getPreviousQuizResult)
+        return JSON.parse(getPreviousQuizResult);
     } 
     else {
-        return false
+        return false;
     }
 }
 
@@ -662,11 +658,11 @@ function retrieveHighScore() {
             for (key in userHighScores) {
 
                 // use concatination because template strings are not supported in IE
-                let tr = '<tr>' + '<td scope="row">' + key + '</td>' + '<td>' + userHighScores[key] + '</td>' + '</tr>'
+                let tr = '<tr>' + '<td scope="row">' + key + '</td>' + '<td>' + userHighScores[key] + '</td>' + '</tr>';
                 tbody += tr;
 
             }
-            table.innerHTML = caption + thead + tbody
+            table.innerHTML = caption + thead + tbody;
         }
         // display message why user does have any score
         else {
@@ -674,7 +670,7 @@ function retrieveHighScore() {
                     <caption>You don\'t have any scores yet!</caption>\
                     ';
 
-            table.innerHTML = caption
+            table.innerHTML = caption;
         }
     }
     else {
@@ -682,7 +678,7 @@ function retrieveHighScore() {
                 <caption>Local Storage not available!</caption>\
                 ';
 
-        table.innerHTML = caption
+        table.innerHTML = caption;
     }
 }
 
@@ -694,11 +690,11 @@ function resetQuiz() {
     clearInterval(interval);
 
     // reset quiz question index and score
-    quizQuestionsIndex = 0
-    quizScore = 0
+    quizQuestionsIndex = 0;
+    quizScore = 0;
     
     // Remove the disable classes if any
-    toggleOptions()
+    toggleOptions();
 }
 
 // Start quiz

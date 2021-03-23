@@ -11,7 +11,6 @@
  * @param {Object} contactForm - Contact form values
  */
 function sendMail(contactForm) {
-    console.log(typeof(contactForm))
     emailjs.send("gmail", "trivia_quiz", {
         "to_name": "Trvia Quiz",
         "from_name": contactForm.fname.value,
@@ -42,7 +41,7 @@ function sendMail(contactForm) {
             });
             // End Credit
         }
-    )
+    );
     return false;
 }
 // End Credit Function Emailjs

@@ -1,7 +1,15 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v7.0.29,
+* Autoprefixer: v9.7.6
+* Browsers: last 4 version
+*/
+
 body {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
     background-color: #f5f5f5;    
     font-family: 'PT Serif', serif;
 }
@@ -24,7 +32,6 @@ h2 {
 }
 
 /* ---------------------------------------- NavBar ---------------------------------------- */
-
 .navbar {
     padding: .5rem 2rem;
 }
@@ -58,38 +65,33 @@ button:focus, .navbar-nav a {
     margin: 5px;
     opacity: 1;
     -webkit-transition: all 0.6s ease-in-out;
-       -moz-transition: all 0.6s ease-in-out;
-        -ms-transition: all 0.6s ease-in-out;
          -o-transition: all 0.6s ease-in-out;
             transition: all 0.6s ease-in-out;
 }
 
 button[aria-expanded="true"] .bar1 {
-    transform: rotate(45deg) translate(5px, 9px);
+    -webkit-transform: rotate(45deg) translate(5px, 9px);
+        -ms-transform: rotate(45deg) translate(5px, 9px);
+            transform: rotate(45deg) translate(5px, 9px);
 }
 
 button[aria-expanded="true"] .bar2 {
-    transform: translateX(-5px);
+    -webkit-transform: translateX(-5px);
+        -ms-transform: translateX(-5px);
+            transform: translateX(-5px);
     opacity: 0;
 }
 
 button[aria-expanded="true"] .bar3::before {
-    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+            transform: rotate(45deg);
 }
 
 button[aria-expanded="true"] .bar3 {
-    transform: rotate(-45deg) translate(2px,-6px);
-}
-
-@media only screen and (min-width: 992px) {
-    .navbar-expand-lg .navbar-nav .nav-link {
-        padding-left: 0;
-        padding-right: 0;
-    }
-
-    .nav-link {
-        margin-left: 2rem;
-    }
+    -webkit-transform: rotate(-45deg) translate(2px,-6px);
+        -ms-transform: rotate(-45deg) translate(2px,-6px);
+            transform: rotate(-45deg) translate(2px,-6px);
 }
 
 /* ---------------------------------------- Landing ---------------------------------------- */
@@ -100,8 +102,13 @@ main {
 
 #home {
     width: 100%; 
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: row;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+       -ms-flex-direction: row;
+           flex-direction: row;
 }
 
 .landing-section {
@@ -118,8 +125,6 @@ main {
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
-    -ms-flex-pack: distribute; 
-    justify-content: space-around;   
     -webkit-box-align: center;   
         -ms-flex-align: center;   
             align-items: center;
@@ -127,10 +132,7 @@ main {
 
 .landing-section--bg {
     background: url('../images/pexels-lex-photography-1109543.jpg') no-repeat center center scroll;
-    -webkit-background-size: cover;
-       -moz-background-size: cover;
-         -o-background-size: cover;
-            background-size: cover;
+    background-size: cover;
 }
 
 .landing-section-item {
@@ -163,7 +165,6 @@ main {
 .landing-section-item-container-text {
     width: 100%;
     min-height: 195px;
-
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -179,7 +180,8 @@ main {
 }
 
 .btn:focus {
-    box-shadow: none;
+    -webkit-box-shadow: none;
+            box-shadow: none;
 }
 
 .btn--cta-quiz {
@@ -212,14 +214,29 @@ main {
             animation: bounce-in .7s forwards;
 }
 
-@keyframes bounce-in {
+@-webkit-keyframes bounce-in {
     0% {
         opacity: 0;
-        transform: translateY(-10rem) scale(0.8);
+        -webkit-transform: translateY(-10rem) scale(0.8);
+                transform: translateY(-10rem) scale(0.8);
     }
     100% {
         opacity: 1;
-        transform: none;
+        -webkit-transform: none;
+                transform: none;
+    }
+}
+
+@keyframes bounce-in {
+    0% {
+        opacity: 0;
+        -webkit-transform: translateY(-10rem) scale(0.8);
+                transform: translateY(-10rem) scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: none;
+                transform: none;
     }
 }
 
@@ -228,53 +245,32 @@ main {
             animation: bounce .8s infinite;
 }
 
+@-webkit-keyframes bounce {
+    50% {
+        -webkit-transform: translateY(-15px);
+                transform: translateY(-15px);
+    }
+}
+
 @keyframes bounce {
     50% {
-        transform: translateY(-15px);
+        -webkit-transform: translateY(-15px);
+                transform: translateY(-15px);
     }
 }
 
 .landing-title {
-    animation-delay: .7s;
+    -webkit-animation-delay: .7s;
+            animation-delay: .7s;
 }
 .landing-subtitle {
-    animation-delay: .9s;
+    -webkit-animation-delay: .9s;
+            animation-delay: .9s;
 }
 
 .btn--landing {
-    animation-delay: 1.1s;
-}
-
-@media only screen and (min-width:768px) {
-    h1 {
-        font-size: 2.5rem;
-    }
-
-    h2 {
-        font-size: 2rem;
-    }
-
-    h3 {
-        font-size: 1.75rem;
-    }
-
-    .landing-section-item-container-inner {
-        padding: 3rem;
-    }
-}
-
-@media only screen and (min-width: 575px) and (max-width: 767px) {
-    h1 {
-        font-size: 2rem;
-    }
-
-    h2 {
-        font-size: 1.5rem;
-    }
-
-    h3 {
-        font-size: 1rem;
-    }
+    -webkit-animation-delay: 1.1s;
+            animation-delay: 1.1s;
 }
 
 /* ---------------------------------------- Categories ---------------------------------------- */
@@ -292,10 +288,9 @@ main {
 hr {
     width: 65%;
     height: 2px;
-    margin-bottom: 1.5rem;
-    
-    background: -webkit-gradient(linear,left top, right top,from(rgba(245, 245, 245, 1)), color-stop(rgba(79, 83, 105, 1)),to(rgba(245, 245, 245, 1)));    
+    margin-bottom: 1.5rem;    
     background: -o-linear-gradient(left,rgba(245, 245, 245, 1), rgba(79, 83, 105, 1),rgba(245, 245, 245, 1));    
+    background: -webkit-gradient(linear,left top, right top,from(rgba(245, 245, 245, 1)), color-stop(rgba(79, 83, 105, 1)),to(rgba(245, 245, 245, 1)));    
     background: linear-gradient(90deg,rgba(245, 245, 245, 1), rgba(79, 83, 105, 1),rgba(245, 245, 245, 1));
 }
 
@@ -318,8 +313,6 @@ hr {
     border-radius: .5rem;
     margin-bottom: 1rem;
     -webkit-transition: all 0.6s ease-in-out;
-       -moz-transition: all 0.6s ease-in-out;
-        -ms-transition: all 0.6s ease-in-out;
          -o-transition: all 0.6s ease-in-out;
             transition: all 0.6s ease-in-out; 
     -webkit-box-shadow: -10px 10px 8px -5px rgba(79, 83, 105,0.15);
@@ -329,7 +322,9 @@ hr {
 .quiz-card:hover {
     -webkit-box-shadow: 0 12px 12px -10px rgba(0, 0, 0, 0.68);
             box-shadow: 0 12px 12px -10px rgba(0, 0, 0, 0.68);
-    transform: translateY(-0.8rem);
+    -webkit-transform: translateY(-0.8rem);
+        -ms-transform: translateY(-0.8rem);
+            transform: translateY(-0.8rem);
 }
 
 .quiz-card:hover .quiz-content {
@@ -370,83 +365,42 @@ hr {
 }
 
 /* ---------------------------------------- Quiz Categories Photo ---------------------------------------- */
-
 .quiz-image--computers {
     background: url('../images/pexels-tranmautritam-69432.jpg') no-repeat center center scroll;
-    -webkit-background-size: cover;
-       -moz-background-size: cover;
-         -o-background-size: cover;
-            background-size: cover;        
+    background-size: cover;        
 }
 
 .quiz-image--nature-science {
     background: url('../images/pexels-anthony-132477.jpg') no-repeat center center scroll;
-    -webkit-background-size: cover;
-       -moz-background-size: cover;
-         -o-background-size: cover;
-            background-size: cover;     
+    background-size: cover;     
 }
 
 .quiz-image--history {
     background: url('../images/pexels-pixabay-164336.jpg') no-repeat center center scroll;
-    -webkit-background-size: cover;
-       -moz-background-size: cover;
-         -o-background-size: cover;
-            background-size: cover;     
+    background-size: cover;     
 }
 
 .quiz-image--geography {
     background: url('../images/pexels-chelsea-cook-2929906.jpg') no-repeat center center scroll;
-    -webkit-background-size: cover;
-       -moz-background-size: cover;
-         -o-background-size: cover;
-            background-size: cover;     
+    background-size: cover;     
 }
 
 .quiz-image--art {
     background: url('../images/florence-3684231_640.jpg') no-repeat center center scroll;
-    -webkit-background-size: cover;
-       -moz-background-size: cover;
-         -o-background-size: cover;
-            background-size: cover;     
+    background-size: cover;     
 }
 
 .quiz-image--mathematics {
     background: url('../images/pexels-jeshootscom-714698.jpg') no-repeat center center scroll;
-    -webkit-background-size: cover;
-       -moz-background-size: cover;
-         -o-background-size: cover;
-            background-size: cover;     
-}
-
-@media only screen and (min-width: 768px) and (max-width:1199px) {
-    .container {
-        max-width: 960px;
-    }
-}
-
-@media only screen and (min-width: 576px) and (max-width: 767px) {
-    .container {
-        max-width: 720px;
-    }
-    .quiz-card {
-        width: 45%;
-    }
-}
-
-@media only screen and (max-width: 575px) {
-    .quiz-card {
-        width: 80%;
-    }
+    background-size: cover;     
 }
 
 /* ---------------------------------------- Contact ---------------------------------------- */
 #contact {
     width: 100%;
     min-height: 760px;
-
-    background: -webkit-gradient(linear, left bottom, left top, from(rgba(251, 226, 218, 1)), color-stop(rgba(79, 83, 105, 1)), color-stop(rgba(253, 213, 195, 1)), color-stop(rgba(214, 223, 235, 1)), to(rgba(245, 245, 245, 1)));
     background: -o-linear-gradient(bottom, rgba(251, 226, 218, 1), rgba(79, 83, 105, 1), rgba(253, 213, 195, 1), rgba(214, 223, 235, 1), rgba(245, 245, 245, 1));
+    background: -webkit-gradient(linear, left bottom, left top, from(rgba(251, 226, 218, 1)), color-stop(rgba(79, 83, 105, 1)), color-stop(rgba(253, 213, 195, 1)), color-stop(rgba(214, 223, 235, 1)), to(rgba(245, 245, 245, 1)));
     background: linear-gradient(0deg, rgba(251, 226, 218, 1), rgba(79, 83, 105, 1), rgba(253, 213, 195, 1), rgba(214, 223, 235, 1), rgba(245, 245, 245, 1));
 }
 
@@ -474,10 +428,19 @@ hr {
 }
 
 .footer-content {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    -webkit-box-pack: center;
+       -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;   
+       -ms-flex-align: center;   
+          align-items: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
 }
 
 .footer-brand {
@@ -497,6 +460,8 @@ hr {
 }
 
 .footer-social-links {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     margin: 1rem 0;
 }
@@ -525,17 +490,18 @@ hr {
 
 #error-section {
     width: 100%; 
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: row;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+       -ms-flex-direction: row;
+           flex-direction: row;
 }
 
 .error-container-flex {
     width: 100%;
     min-height: 100vh;
-    background: -webkit-gradient(linear, left bottom, left top, from(rgba(251, 226, 218, 1)), color-stop(rgba(79, 83, 105, 1)), color-stop(rgba(253, 213, 195, 1)), color-stop(rgba(214, 223, 235, 1)), to(rgba(245, 245, 245, 1)));
-    background: -o-linear-gradient(bottom, rgba(251, 226, 218, 1), rgba(79, 83, 105, 1), rgba(253, 213, 195, 1), rgba(214, 223, 235, 1), rgba(245, 245, 245, 1));
-    background: linear-gradient(0deg, rgba(251, 226, 218, 1), rgba(79, 83, 105, 1), rgba(253, 213, 195, 1), rgba(214, 223, 235, 1), rgba(245, 245, 245, 1));
-
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -547,6 +513,12 @@ hr {
     -webkit-box-align: center;   
         -ms-flex-align: center;   
             align-items: center;
+}
+
+.error-container--bg {
+    background: -o-linear-gradient(bottom, rgba(251, 226, 218, 1), rgba(79, 83, 105, 1), rgba(253, 213, 195, 1), rgba(214, 223, 235, 1), rgba(245, 245, 245, 1));
+    background: -webkit-gradient(linear, left bottom, left top, from(rgba(251, 226, 218, 1)), color-stop(rgba(79, 83, 105, 1)), color-stop(rgba(253, 213, 195, 1)), color-stop(rgba(214, 223, 235, 1)), to(rgba(245, 245, 245, 1)));
+    background: linear-gradient(0deg, rgba(251, 226, 218, 1), rgba(79, 83, 105, 1), rgba(253, 213, 195, 1), rgba(214, 223, 235, 1), rgba(245, 245, 245, 1));
 }
 
 .error-container-flex-child {
@@ -565,7 +537,6 @@ hr {
     margin: 2rem;
     border-radius: .5rem;
     background: rgb(115, 110, 124);
-
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -594,14 +565,80 @@ hr {
 } 
 
 .error-title {
-    animation-delay: .7s;
+    -webkit-animation-delay: .7s;
+            animation-delay: .7s;
     color: #fff;
 }
 .error-subtitle {
-    animation-delay: .9s;
+    -webkit-animation-delay: .9s;
+            animation-delay: .9s;
     color: #fff;
 }
 
 .btn--error {
-    animation-delay: 1.1s;
+    -webkit-animation-delay: 1.1s;
+            animation-delay: 1.1s;
+}
+
+/* ---------------------------------------- Media Query ---------------------------------------- */
+@media only screen and (min-width: 768px) and (max-width:1199px) {
+    .container {
+        max-width: 960px;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    .navbar-expand-lg .navbar-nav .nav-link {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .nav-link {
+        margin-left: 2rem;
+    }
+}
+
+@media only screen and (min-width:768px) {
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    h3 {
+        font-size: 1.75rem;
+    }
+
+    .landing-section-item-container-inner {
+        padding: 3rem;
+    }
+}
+
+@media only screen and (min-width: 575px) and (max-width: 767px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    h3 {
+        font-size: 1rem;
+    }
+
+    .container {
+        max-width: 720px;
+    }
+    .quiz-card {
+        width: 45%;
+    }
+}
+
+@media only screen and (max-width: 575px) {
+    .quiz-card {
+        width: 80%;
+    }
 }
