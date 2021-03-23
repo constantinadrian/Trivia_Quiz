@@ -208,6 +208,7 @@ function toggleOptions() {
  */
 function startQuiz() {
 
+    // check if there is token store in session storage
     if (storageAvailable('sessionStorage')) 
     {
         let quizSessionToken = retrieveSessionToken()
@@ -361,7 +362,9 @@ function displayQuestions() {
 function checkQuizDataResponseCode(triviaQuizData) {
     // Result returned successfully
     if (triviaQuizData.response_code == 0) {
+        // get quiz data results
         quizQuestions = triviaQuizData.results
+        // get quiz category name to store the data with quiz score
         quizCategoryName = quizQuestions[quizQuestionsIndex].category
         console.log(quizQuestions)
         displayQuestions()
@@ -683,19 +686,36 @@ function retrieveHighScore() {
     }
 }
 
+function resetQuiz() {
+    $("#question-container").addClass("d-none");
+    $("#quiz-start").removeClass("d-none");
+
+    // stop the Countdown counter
+    clearInterval(interval);
+
+    // reset quiz question index and score
+    quizQuestionsIndex = 0
+    quizScore = 0
+    
+    // Remove the disable classes if any
+    toggleOptions()
+}
+
 // Start quiz
 $("#start-quiz").click(startQuiz);
 
 // High Score button
 $("#high-scores").click(highScore);
 
-// 
+// Show quiz instructions
 $("#quiz-instructions").click(function() {
     $('#quiz-instructions-modal').modal('show');
 });
 
 // Return to start quiz
 $("#return-to-quiz").click(returnToStartQuiz);
+
+$("#quiz-reset").click(resetQuiz);
 
 // Go to next question button
 $("#next-question").click(nextQuestion);
