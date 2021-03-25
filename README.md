@@ -8,6 +8,40 @@ Trivia Quiz is a quiz app build to attract all categories of users by providing 
 
 ## Table of Contents
 
+1. [UX](#ux)
+
+    - [User stories](#user-stories)
+
+    - [Strategy](#strategy)
+
+    - [Scope](#scope)
+
+    - [Structure](#structure)
+
+    - [Skeleton](#skeleton)
+
+    - [Surface](#surface) 
+
+2. [Technologies Used](#technologies-used)
+
+3. [Testing](#testing)
+
+4. [Deployment](#deployment)
+
+    - [Inception project](#inception-project)
+
+    - [GitHub Pages](#github-pages)
+
+    - [Local Clone](#local-clone)
+
+5. [Credit](#credit)
+
+6. [Disclaimer](#disclaimer)
+
+[Back to Top](#table-of-contents)
+
+-----
+
 - ### UX:
 
   - #### User stories
@@ -92,6 +126,8 @@ Trivia Quiz is a quiz app build to attract all categories of users by providing 
         3. 404 Page
 
           - 404 Page was added in case users redirect to a page that does not exist.
+
+          Note: In order to make this page work the in the Slack community there was a pinned info about the 404 functionality. All I had to do was to create a 404.md file and place it with the 404.html in the root folder. 
  
       - ##### Future Features to Implement:
 
@@ -137,7 +173,7 @@ Trivia Quiz is a quiz app build to attract all categories of users by providing 
 
 -----
 
-- ### Technologies Used:
+- ### Technologies Used
 
   - #### Languages:
 
@@ -191,139 +227,7 @@ Trivia Quiz is a quiz app build to attract all categories of users by providing 
 
 - ### Testing
 
-    - [HTML Validator](https://validator.w3.org/)
-        
-         - Home Page
-         
-            ![Home](assets/readme/index-page-test.png)
-
-         - Game Page 
-         
-            ![Game](assets/readme/index-page-test.png) 
-
-    - [CSS Validator](https://jigsaw.w3.org/css-validator/) - 
-    
-        - CSS - style.css
-        
-            ![Result CSS Validator](assets/readme/style-css-validator-result.png)
-
-            - All Warnings were from prefixes
-
-        - CSS - game.css
-
-            ![Result CSS Validator](assets/readme/game-css-validator-result.png)
-
-            - All Warnings were from prefixes
-
-    - [Lighthouse in Chrome](https://developers.google.com/web/tools/lighthouse) - [Home](readme/lighthouse-homeindex.png) [Game](readme/lighthouse-home.png)
-
-    - [GTMetrix](https://gtmetrix.com/) - [Home](assets/readme/gtmetrix-index.png) [Game](assets/readme/gtmetrix-game.png)
-
-  - #### Testing User Stories from User Experience (UX) Section
-
-    I. First Time Visitor Goals
-
-    - I would like to have the option to select a quiz from various categories.
-
-        - When the user enters the site he can immediately play a general quiz, or he can navigate to the Quiz category from the navigation bar or from the by pressing the down arrow from the landing page and select a quiz from various categories.
-
-    - If the quiz is finished, I would like to have the option to restart the quiz immediately without having to return to the main menu.
-
-        - When the quiz is finished the main quiz start menu will be shown to the user and the start quiz button will display "Play again".
-
-    - When I restart a quiz, I want to receive new questions for the category. 
-
-        - Every time a user starts a quiz game for the first time a call for a session token will be made to Trivia Quiz Database and store on sessionStorage, if available, thus every time the user wants to play again a certain category different questions will be displayed.
-
-    - I want a quiz with different scores results, depending on how well I have done on the quiz.
-
-        - After the user finishes the quiz, depending on how many questions he answered correctly a modal will be displayed with the score and a different message depending on the actual score.
-
-    II.	Returning User Goals:
-
-    - I want to find links to social media to find updates on the trivia-quizzes. 
-
-        - On the footer of the page the user can find links to social media to find updates about the new categories of quizzes being added and keep in touch with Trivia Quiz.
-
-    - Be able to see my previous scores for each quiz that I take.
-
-        - Every time a user finishes a quiz the category and the quiz score will be store in local Storage, if available, and when returning the user can see his history. On local storage, we will store just the highest score for each category.
-
-    III. Site Owner Goals:
-
-    - Create a fun and friendly website where the users can enjoy having a quiz.
-
-        - The design was chosen very carefully and with light warm colors that will attract the user and keep him longer on the site. To make it more friendly, different messages will be displayed when the user finishes the quiz along with the score. 
-
-    - Let users have the option to select the quiz from various categories.
-
-        - The site owner has carefully chosen a Quiz API that has several categories so that the user can benefit from a variety of categories.
-
-    - Let users be able to contact the site owner by email for any recommendation of different quizzes or improvements of any kind.
-
-        - On the index page the user can use the functional contact form to make any suggestions or to request any new quiz categories. 
-
-  - #### Testing on Different Browsers
-
-    - The following web browsers were used for testing the browser compatibility and responsiveness (System: Windows 10 64-bit).
-
-        1. Chrome - Version 89.0.4389.90 (Official Build) (64-bit)
-
-        2. Firefox - 87.0 (64-bit)
-
-        3. Edge - Version 89.0.774.57 (Official build) (64-bit)
-
-        4. Opera - Version:74.0.3911.232
-
-        5. IE - Version 20H2
-
-        All test was good. 
-
-  - #### Testing on Different Devices
-
-    1. iPhone 11 - IOS 14.0.1
-
-    2. Ipad Mini 2 - IOS 12.4.8 
-
-    3. Huawei P Smart
-
-    4. iPhone 5S - IOS 10.2.1
-
-  - A large amount of testing was done to ensure that all pages were linked correctly.
-
-  - #### Bugs & Fixs
-
-    - Internet Explorer: When press "Let's start this quiz" the quiz game wouldn't start.
-
-        - In game.js, validateAnswer function was used "for (let of)" that was no support in Internet Explorer. 
-
-        - To fix: the "for (let of)" loop was replaced with the "for" loop and the quiz game could start.
-
-    - Internet Explorer: After the user selected an answer from the possible options, he couldn't see the background color of the selected answer of correct or wrong class because the hover background color was still visible.
-
-        - To fix this in game.css was added another rule and the class of correct and wrong was added to selector with pseudo-class hover to have the background of the correct and wrong class wants its added
-
-    - Internet Explorer: After adding the updateTimeLeft function the quiz game didn't start
-
-        - In updateTimeLeft function was use template literals that are not supported in IE.
-
-        - To fix this concatenation was used instead.
-
-    - Internet Explorer: After adding a check on the redirected link from index.html to game.html the quiz game wouldn't start
-    
-        - The includes() method was used to check selected category from the URL and if the query string is not changed as well. The includes() method is not supported in IE.
-
-        - To fix this the includes() method was changed with indexOf().
-
-    - An Uncaught TypeError: error was shown in console.log after implement of "error message function" 
-
-        - The error was happing because in the case of failed to parse the data from API call with JSON.parse the "error" object was send to the implemented function and from there was access to the name of the error. But if the API status call was not 200 no object could be sent thus resulting in an error.
-
-        - To fix this the error.name was sent from the function that was making the API call instead of the object.
-
-    - Wrong message displayed at the finish of the quiz when the score was shown.
-
-        - To fix this the logical AND operator (&&) was used. 
+    - Testing documentation can be found [HERE](TESTING.md)
 
  [Back to Top](#table-of-contents)
 
@@ -416,6 +320,8 @@ Trivia Quiz is a quiz app build to attract all categories of users by providing 
   - #### Acknowledgements
 
     - [Code Institute](https://codeinstitute.net/) for all course material 
+
+    - Slack community
 
     - My mentor Oluwafemi Medale for his support and feedback that he has given me for this milestone project.
 
