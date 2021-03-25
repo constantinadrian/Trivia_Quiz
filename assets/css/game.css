@@ -503,6 +503,9 @@ body {
 }
 
 /* ---------------------------------------- Quiz Modal ---------------------------------------- */
+.modal-dialog {
+    margin: .5rem auto;
+}
 
 .modal-sm {
     max-width: 400px;
@@ -593,6 +596,12 @@ body {
 
     .game-start-title {
         font-size: 30px;
+    }
+}
+
+@media only screen and (min-width: 576px) {
+    .modal-dialog {
+        margin: 1.75rem auto;
     }
 }
 
