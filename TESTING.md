@@ -78,6 +78,11 @@
 
                 sendMail - function that it's call with onsubmit attribute when the contact form is submitted
 
+        - Game.js
+
+        ![game.js](assets/readme/gamejs.png)
+
+            - All warning are from: 'let' is available in ES6 (use 'esversion: 6') or Mozilla JS extensions (use moz).
 
 [Back to Top](#table-of-contents)
 
@@ -322,6 +327,10 @@
         - Testing: Different page was trying to access from URL on the first test. On the second test the query string from the URL was change and the third the category was changed and refresh the page.
 
         - Result in all cases the user's redirecting to 404 page.
+
+[Back to Top](#table-of-contents)
+
+-----
 
 - ### Bugs and Fixs
 
