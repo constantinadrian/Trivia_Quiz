@@ -1,3 +1,4 @@
+/*jshint multistr: true */
 // Declare Global variable
 
 // NodeList of all answers
@@ -132,6 +133,7 @@ function validateAnswer(selectedOption) {
 }
 
 function finishQuiz() {
+    let quizCrown;
     if (quizScore == 10) {
         quizCrown = "green";
         quizMessage = "Perfect. Can you maintain it tomorrow?";
@@ -214,7 +216,7 @@ function startQuiz() {
         let quizSessionToken = retrieveSessionToken();
         if (quizSessionToken) {
             // assign token to global variable
-            triviaQuizToken = quizSessionToken["token"];
+            triviaQuizToken = quizSessionToken.token;
 
             getQuizData(triviaQuizToken);
         }
@@ -262,7 +264,7 @@ function getQuizToken(url) {
             errorMessage("database-error-response");
         }
     };
-};
+}
 
 /**
  * Get quiz data from TRIVIA API 
@@ -342,7 +344,7 @@ function displayQuestions() {
     }
 
     // declare variable to increase progress bar base on current question
-    let progressWidth = (quizQuestionsIndex + 1) * 10
+    let progressWidth = (quizQuestionsIndex + 1) * 10;
     $(".quiz-footer-progress-fill").width(progressWidth + "%");
 
     // display the number of current question 
@@ -366,7 +368,6 @@ function checkQuizDataResponseCode(triviaQuizData) {
         quizQuestions = triviaQuizData.results;
         // get quiz category name to store the data with quiz score
         quizCategoryName = quizQuestions[quizQuestionsIndex].category;
-        console.log(quizQuestions);
         displayQuestions();
     }
     // Could not return results. The API doesn't have enough questions for your query
@@ -471,7 +472,7 @@ function timer(time) {
         // check when Countdown counter needs to be stop
         if (now < 0) {
             clearInterval(interval);
-            return
+            return;
         }
         else {
             updateTimeLeft(Math.round(now/1000));
@@ -563,7 +564,7 @@ function storageAvailable(type) {
     if (storageAvailable('localStorage')) {
 
         // check if user have any previous highscore in localStorage
-        previousQuiz = retrieveHighScore();
+        let previousQuiz = retrieveHighScore();
 
         // if no previous data create quizResult object
         if (!previousQuiz) {
@@ -635,7 +636,7 @@ function retrieveHighScore() {
     if (storageAvailable('localStorage')) {
 
         // check if user have any previous highscore in localStorage
-        userHighScores = retrieveHighScore();
+        let userHighScores = retrieveHighScore();
         
         if (userHighScores) {
 
@@ -655,7 +656,7 @@ function retrieveHighScore() {
             let tbody = '';
 
             // display the scores of the stored quiz
-            for (key in userHighScores) {
+            for (let key in userHighScores) {
 
                 // use concatination because template strings are not supported in IE
                 let tr = '<tr>' + '<td scope="row">' + key + '</td>' + '<td>' + userHighScores[key] + '</td>' + '</tr>';
